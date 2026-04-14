@@ -254,22 +254,6 @@
     font-family: 'Crimson Pro', 'Courier New', monospace;
   }
 
-  /* ===== 分隔頁 ===== */
-  .div-s {
-    justify-content: center; align-items: center; text-align: center;
-    background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 50%),
-                linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
-  }
-  .div-s .num {
-    font-size: 140px; font-weight: 900;
-    font-family: 'Crimson Pro', serif;
-    background: linear-gradient(180deg, rgba(212,175,55,0.1), rgba(212,175,55,0.02));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: -50px; user-select: none;
-  }
-  .div-s h2 { font-size: 30px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
-  .div-s p { font-size: 14.5px; color: var(--text-muted); max-width: 640px; line-height: 1.8; }
-
   /* ===== 導航 ===== */
   .nav {
     position: fixed; bottom: 12px; right: 14px;
@@ -343,7 +327,7 @@
 </head>
 <body>
 
-<div class="progress-bar" id="progressBar" style="width: 5.6%;"></div>
+<div class="progress-bar" id="progressBar" style="width: 9.1%;"></div>
 
 <!-- ========== S1: 封面 ========== -->
 <div class="slide active" id="s1" style="padding:0; background: linear-gradient(160deg, #080c15 0%, #0c1120 45%, #10162a 100%); overflow:hidden;">
@@ -401,33 +385,11 @@
       </div>
     </div>
   </div>
-  <div class="sn">1 / 18</div>
+  <div class="sn">1 / 11</div>
 </div>
 
-<!-- ========== S2: 大綱 ========== -->
+<!-- ========== S2: 研究動機 ========== -->
 <div class="slide" id="s2" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><h2>報告大綱</h2></div>
-  <div class="sb col1">
-    <div class="tc" style="display:flex; flex-direction:column; justify-content:center; max-width:700px; margin:0 auto;">
-      <table style="font-size:17px;">
-        <tr><td style="color:var(--accent); font-weight:700; width:40px;">01</td><td>研究動機與文獻回顧</td><td style="color:var(--text-muted); font-size:14px;">Slide 3–5</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">02</td><td>奈米材料設計概念</td><td style="color:var(--text-muted); font-size:14px;">Slide 6</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">03</td><td>材料合成方法</td><td style="color:var(--text-muted); font-size:14px;">Slide 7</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">04</td><td>材料鑑定結果</td><td style="color:var(--text-muted); font-size:14px;">Slide 8–11</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">05</td><td>光催化降解數據</td><td style="color:var(--text-muted); font-size:14px;">Slide 12–13</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">06</td><td>RSM 參數最佳化</td><td style="color:var(--text-muted); font-size:14px;">Slide 14</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">07</td><td>穩定性與實際應用</td><td style="color:var(--text-muted); font-size:14px;">Slide 15</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">08</td><td>降解途徑與毒性</td><td style="color:var(--text-muted); font-size:14px;">Slide 16</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">09</td><td>光催化機制</td><td style="color:var(--text-muted); font-size:14px;">Slide 17</td></tr>
-        <tr><td style="color:var(--accent); font-weight:700;">10</td><td>結論</td><td style="color:var(--text-muted); font-size:14px;">Slide 18</td></tr>
-      </table>
-    </div>
-  </div>
-  <div class="sn">2 / 18</div>
-</div>
-
-<!-- ========== S3: 研究動機 ========== -->
-<div class="slide" id="s3" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
   <div class="sh"><span class="tag">01 動機</span><h2>養殖廢水中的抗生素危機</h2></div>
   <div class="sb">
     <div class="tc">
@@ -450,66 +412,31 @@
       <div class="cap">Journal of Water Process Engineering — 發表期刊</div>
     </div>
   </div>
-  <div class="sn">3 / 18</div>
+  <div class="sn">2 / 11</div>
 </div>
 
-<!-- ========== S4: 文獻回顧與 CuO 選擇（合併原 S4+S5） ========== -->
-<div class="slide" id="s4" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">01 文獻</span><h2>ZnO 光催化的挑戰與 CuO 摻雜策略</h2></div>
-  <div class="sb">
-    <div class="tc">
-      <h3>為什麼選 ZnO？</h3>
-      <ul>
-        <li>光催化因<span class="gd">高效且無二次污染</span>，被認為最具前景</li>
-        <li>ZnO 具有<span class="hl">成本低、光敏性高、穩定性好</span>等優勢</li>
-        <li>但 ZnO band gap 為 <span class="wr">3.12 eV</span>，僅能被紫外光激發，可見光利用受限</li>
-      </ul>
-      <h3>為什麼選 CuO 來摻雜？</h3>
-      <ul>
-        <li>CuO 是 <span class="hl">p 型半導體</span>（因氧空位缺陷），band gap 僅 1.2 eV</li>
-        <li>對可見光有良好響應，成本低、化學穩定性優異</li>
-        <li>CuO（p 型）+ ZnO（n 型）→ 形成 <span class="gd">PN 異質結</span></li>
-        <li>內建電場促進光生電子-空穴對<span class="gd">有效分離</span> → 更多自由基 → 更高效率</li>
-      </ul>
-    </div>
-    <div class="ic">
-      <!-- Band Gap 比較圖 -->
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:28px; text-align:center; width:100%;">
-        <h3 style="color:var(--accent-light); margin-bottom:20px; font-size:15px; border:none;">Band Gap 比較</h3>
-        <div style="display:flex; justify-content:center; gap:36px; align-items:end; margin-bottom:16px;">
-          <div>
-            <div style="width:76px; height:200px; background:linear-gradient(180deg,#7c3aed,#4c1d95); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">3.12 eV</div>
-            <div style="color:var(--text-secondary); margin-top:8px; font-size:13px;">ZnO<br><span style="color:var(--red);">僅 UV</span></div>
-          </div>
-          <div>
-            <div style="width:76px; height:178px; background:linear-gradient(180deg,#f59e0b,#d97706); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">2.78 eV</div>
-            <div style="color:var(--text-secondary); margin-top:8px; font-size:13px;">ZC₀.₃<br><span style="color:var(--green);">可見光!</span></div>
-          </div>
-          <div>
-            <div style="width:76px; height:97px; background:linear-gradient(180deg,#dc2626,#7f1d1d); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">1.51 eV</div>
-            <div style="color:var(--text-secondary); margin-top:8px; font-size:13px;">CuO<br><span style="color:var(--green);">可見光</span></div>
-          </div>
-        </div>
-        <p style="color:var(--text-muted); font-size:12px; line-height:1.5;">CuO 摻雜將 ZnO band gap 從 3.12 降至 2.78 eV<br>光吸收從 400 nm 拓展至 900 nm</p>
-      </div>
-    </div>
-  </div>
-  <div class="sn">4 / 18</div>
-</div>
-
-<!-- ========== S5: 研究缺口與目標（合併原 S6+S7） ========== -->
-<div class="slide" id="s5" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">01 文獻</span><h2>研究缺口與目標</h2></div>
+<!-- ========== S3: 文獻回顧與研究目標（合併原 S4+S5） ========== -->
+<div class="slide" id="s3" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">02 文獻</span><h2>文獻回顧與研究目標</h2></div>
   <div class="sb col1">
     <div class="tc" style="max-width:100%;">
       <div style="display:flex; gap:36px;">
         <div style="flex:1;">
-          <h3>文獻缺口與創新</h3>
+          <h3>ZnO 的優勢與限制</h3>
+          <ul>
+            <li>ZnO 光催化<span class="gd">成本低、穩定性好</span>，但 band gap <span class="wr">3.12 eV</span> → 僅吸收 UV 光</li>
+            <li>CuO 為 <span class="bl">p 型半導體</span>（band gap 1.2 eV），與 n 型 ZnO 形成 <span class="gd">PN 異質結</span></li>
+            <li>PN 內建電場促進載子分離 → 更多自由基 → 更高效率</li>
+          </ul>
+          <h3>文獻缺口</h3>
           <ul>
             <li>大多數研究以<span class="wr">淡水</span>為溶劑 → 海水場景研究稀少</li>
             <li>催化劑為<span class="wr">粉體形式</span> → 回收效率低</li>
           </ul>
-          <div class="cards" style="grid-template-columns: 1fr 1fr; margin-top:14px;">
+        </div>
+        <div style="flex:1;">
+          <h3>本研究四大創新</h3>
+          <div class="cards" style="grid-template-columns: 1fr 1fr; margin-top:8px;">
             <div class="card" style="border-color:rgba(245,158,11,0.2); padding:12px;">
               <div class="lb">創新 1</div>
               <div style="color:var(--accent); font-size:13px; line-height:1.5;">CuO/ZnO PN 異質結<br>拓展可見光響應</div>
@@ -527,47 +454,45 @@
               <div style="color:var(--purple); font-size:13px; line-height:1.5;">RSM 回應曲面<br>最佳化參數</div>
             </div>
           </div>
-        </div>
-        <div style="flex:1;">
-          <h3>六大研究目標</h3>
-          <p style="margin-top:8px;">
-            <span style="color:var(--accent); font-weight:700;">1.</span> 以共沉澱法合成不同 CuO 摻雜比例的 ZC 複合光觸媒<br><br>
-            <span style="color:var(--accent); font-weight:700;">2.</span> 探討 CuO 摻雜對形貌、band gap、光電性質的影響<br><br>
-            <span style="color:var(--accent); font-weight:700;">3.</span> 系統研究各反應參數對 TC 去除的影響，以 RSM 求最佳條件<br><br>
-            <span style="color:var(--accent); font-weight:700;">4.</span> 將催化劑固定於 PMSS 載體實現循環使用<br><br>
-            <span style="color:var(--accent); font-weight:700;">5.</span> 鑑定 TC 降解中間產物並評估毒性<br><br>
-            <span style="color:var(--accent); font-weight:700;">6.</span> 闡明 ZC 複合光觸媒的光催化降解機制
-          </p>
+          <h3>核心研究目標</h3>
+          <ul>
+            <li>合成不同 CuO 比例的 ZC 複合光觸媒，找出最佳配方</li>
+            <li>以 RSM 求最佳反應條件，鑑定降解中間產物與機制</li>
+            <li>PMSS 固定化實現循環使用，驗證日光可行性</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="sn">5 / 18</div>
+  <div class="sn">3 / 11</div>
 </div>
 
-<!-- ========== S6: PN 異質結設計（原 S8） ========== -->
-<div class="slide" id="s6" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">02 設計</span><h2>奈米材料設計概念 — PN 異質結</h2></div>
+<!-- ========== S4: PN 異質結設計與合成方法（合併原 S6+S7） ========== -->
+<div class="slide" id="s4" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">03 設計與合成</span><h2>PN 異質結設計與合成方法</h2></div>
   <div class="sb">
     <div class="tc">
-      <h3>設計思路</h3>
-      <p>將 <span class="bl">p 型半導體 CuO</span> 與 <span class="hl">n 型半導體 ZnO</span> 結合，利用 PN 異質結的內建電場加速光生載子分離。</p>
-      <h3>ZnO（n 型半導體）</h3>
+      <h3>PN 異質結設計思路</h3>
       <ul>
-        <li>六方晶系結構，band gap 3.12 eV</li>
-        <li>ZnO 扮演<span class="hl">電子供體</span>角色，加速光生電子-空穴對分離</li>
+        <li><span class="bl">p 型 CuO</span>（1.51 eV）+ <span class="hl">n 型 ZnO</span>（3.12 eV）→ 內建電場</li>
+        <li>電場驅動 e⁻/h⁺ 向相反方向移動 → <span class="gd">抑制複合</span></li>
+        <li>Band gap 降至 <span class="gd">2.78 eV</span> → 可見光全覆蓋至 900 nm</li>
       </ul>
-      <h3>CuO（p 型半導體）</h3>
+      <h3>共沉澱法合成流程</h3>
+      <div class="flow" style="margin:10px 0;">
+        <div class="fs">Zn/Cu 硝酸鹽<br>+ CTAB</div>
+        <span class="fa">→</span>
+        <div class="fs">NaOH<br>共沉澱</div>
+        <span class="fa">→</span>
+        <div class="fs">離心洗滌<br>乾燥</div>
+        <span class="fa">→</span>
+        <div class="fs" style="border-color:rgba(52,211,153,0.4); color:var(--green);">500°C 煅燒<br>2 小時</div>
+      </div>
+      <h3>PMSS 固定化 & 實驗條件</h3>
       <ul>
-        <li>單斜晶系結構，band gap 1.51 eV（文獻值 1.2 eV）</li>
-        <li>因氧空位缺陷形成 p 型半導體特性</li>
-      </ul>
-      <h3>PN 異質結優勢</h3>
-      <ul>
-        <li>界面內建電場驅動 e⁻ 和 h⁺ 向<span class="gd">相反方向移動</span></li>
-        <li>有效抑制光生電子-空穴對的複合</li>
-        <li>更多載子參與光催化反應 → <span class="gd">更多自由基產生</span></li>
-        <li>band gap 降至 2.78 eV → <span class="gd">可見光全覆蓋</span>（至 900 nm）</li>
+        <li>PMSS 經 TOPT/乙醇表面改質 → 催化劑超音波塗覆 → 乾燥</li>
+        <li>光源：氙燈 λ > 420 nm；溶劑：<span class="hl">過濾天然海水</span></li>
+        <li>暗反應 30 min → 光照 60 min → HPLC 定量</li>
       </ul>
     </div>
     <div class="ic">
@@ -575,304 +500,162 @@
         <span class="fig-label">Fig. 11</span>
         <img src="papers/me/images/fig11_mechanism.png" alt="PN 異質結機制圖">
       </div>
-      <div class="cap">ZnO/CuO PN 異質結光催化機制示意圖 — CuO(CB) → ZnO(CB) 電子轉移</div>
+      <div class="cap">ZnO/CuO PN 異質結光催化機制示意圖</div>
     </div>
   </div>
-  <div class="sn">6 / 18</div>
+  <div class="sn">4 / 11</div>
 </div>
 
-<!-- ========== S7: 合成方法（原 S10） ========== -->
-<div class="slide" id="s7" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">03 合成</span><h2>材料合成方法 — 共沉澱法</h2></div>
-  <div class="sb col1">
-    <div class="tc" style="max-width:100%;">
-      <h3>合成步驟</h3>
-      <div class="flow" style="justify-content:center; margin:14px 0;">
-        <div class="fs">Zn(NO₃)₂·6H₂O<br>+ Cu(NO₃)₂·3H₂O</div>
-        <span class="fa">→</span>
-        <div class="fs">溶於去離子水<br>+ CTAB 攪拌</div>
-        <span class="fa">→</span>
-        <div class="fs">滴加 NaOH<br>共沉澱</div>
-        <span class="fa">→</span>
-        <div class="fs">離心洗滌<br>（水+乙醇）</div>
-        <span class="fa">→</span>
-        <div class="fs">105°C 乾燥<br>12 小時</div>
-        <span class="fa">→</span>
-        <div class="fs" style="border-color:rgba(52,211,153,0.4); color:var(--green);">500°C 煅燒<br>2 小時</div>
-      </div>
-      <div style="display:flex; gap:32px; margin-top:10px;">
-        <div style="flex:1;">
-          <h3>PMSS 固定化步驟</h3>
-          <div class="flow">
-            <div class="fs">PMSS 浸入<br>TOPT/乙醇(1:1)<br>攪拌 30 min</div>
-            <span class="fa">→</span>
-            <div class="fs">靜置 1h<br>表面改質</div>
-            <span class="fa">→</span>
-            <div class="fs">0.4g 催化劑<br>超音波分散</div>
-            <span class="fa">→</span>
-            <div class="fs">PMSS 浸入<br>200 rpm 攪拌<br>5 min 塗覆</div>
-            <span class="fa">→</span>
-            <div class="fs" style="border-color:rgba(52,211,153,0.4); color:var(--green);">乾燥 →<br>ZC₀.₃-PMSS</div>
-          </div>
-        </div>
-        <div style="flex:1;">
-          <h3>光催化實驗條件</h3>
-          <ul>
-            <li>光源：氙燈（λ > 420 nm, 60 mW/cm²）模擬可見光</li>
-            <li>溶劑：<span class="hl">過濾天然海水</span>（非去離子水）</li>
-            <li>暗反應 30 min → 光照 60 min</li>
-            <li>TC 濃度以 HPLC（C18 柱）定量</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="sn">7 / 18</div>
-</div>
-
-<!-- ========== S8: SEM / TEM（原 S11） ========== -->
-<div class="slide" id="s8" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">04 鑑定</span><h2>SEM / TEM 形貌分析</h2></div>
+<!-- ========== S5: 材料鑑定（合併原 S8+S9） ========== -->
+<div class="slide" id="s5" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">04 鑑定</span><h2>材料鑑定：形貌、結構與化學態</h2></div>
   <div class="sb">
     <div class="tc">
-      <h3>SEM 觀察結果</h3>
+      <h3>SEM / TEM — 形貌觀察</h3>
       <ul>
-        <li><span class="hl">純 ZnO</span>：呈現紡錘形（spindle-like）奈米結構，均勻無團聚</li>
-        <li><span class="hl">ZC₀.₁–ZC₀.₅</span>：隨 CuO 增加，顆粒逐漸變圓，ZnO 與 CuO 結合更緊密</li>
-        <li><span class="gd">ZC₀.₃</span>：ZnO 與 CuO 緊密交錯，形成良好異質結構接觸</li>
+        <li>純 ZnO 呈紡錘形；CuO 摻雜後顆粒變圓，<span class="gd">ZC₀.₃ 緊密交錯</span></li>
+        <li>HRTEM 晶格條紋：ZnO<span class="hl">(101)</span> + CuO<span class="hl">(−111)</span> → 確認異質結形成</li>
+        <li>BET 比表面積：ZnO 14.31 → ZC <span class="gd">18.72 m²/g</span></li>
       </ul>
-      <h3>TEM / HRTEM（ZC₀.₃）</h3>
+      <h3>XRD — 確認結晶結構</h3>
       <ul>
-        <li>清晰可見 ZnO 與 CuO 的<span class="hl">界面接觸</span></li>
-        <li>晶格條紋對應 ZnO<span class="hl">(101)</span> 及 CuO<span class="hl">(−111)</span> 晶面，確認 PN 結形成</li>
+        <li>ZnO 六方晶系 + CuO 單斜晶系特徵峰完整，<span class="gd">無雜峰</span></li>
+        <li>CuO 峰強度隨摻雜比例增加 → 兩相成功共存</li>
       </ul>
-      <h3>BET 比表面積</h3>
-      <div class="cards">
-        <div class="card"><div class="lb">ZnO 比表面積</div><div class="vl" style="font-size:18px;">14.31 m²/g</div></div>
-        <div class="card"><div class="lb">ZC 比表面積</div><div class="vl green" style="font-size:18px;">18.72 m²/g</div></div>
-        <div class="card"><div class="lb">ZC 孔徑</div><div class="vl" style="font-size:18px;">25.64 Å</div><div style="font-size:10px; color:var(--text-muted);">ZnO: 23.65 Å</div></div>
-      </div>
+      <h3>XPS — 確認電子交互作用</h3>
+      <ul>
+        <li>Zn 2p、Cu 2p 確認 Zn²⁺ 和 Cu²⁺ 存在</li>
+        <li><span class="hl">關鍵</span>：O 1s 結合能<span class="gd">正移 0.3 eV</span> → 電子從 ZnO 轉移至 CuO</li>
+        <li>證實 PN 異質結處存在<span class="hl">電子交互作用</span></li>
+      </ul>
     </div>
-    <div class="ic">
-      <div class="fig-highlight">
+    <div class="ic-dual">
+      <div class="fig-highlight" style="max-height:48%;">
         <span class="fig-label">Fig. 1</span>
         <img src="papers/me/images/fig1_sem_tem.png" alt="SEM TEM">
       </div>
-      <div class="cap">(a-g) ZnO ~ CuO SEM 圖；(h) ZC₀.₃ TEM；(i) HRTEM 晶格條紋</div>
-    </div>
-  </div>
-  <div class="sn">8 / 18</div>
-</div>
-
-<!-- ========== S9: XRD + XPS（原 S12） ========== -->
-<div class="slide" id="s9" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">04 鑑定</span><h2>XRD 結晶結構與 XPS 化學態</h2></div>
-  <div class="sb">
-    <div class="tc">
-      <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:14px; border-left:2px solid var(--accent-dim); padding-left:12px;">
-        合成出來的材料到底是不是 ZnO/CuO 複合物？兩者之間有沒有真正的化學交互作用？<br>XRD 驗證晶體結構，XPS 檢測元素的化學狀態與電子轉移。
-      </p>
-      <h3>XRD — 確認「材料是什麼」</h3>
-      <ul>
-        <li>ZnO 特徵峰對應 JCPDS 01-070-2551（六方晶系）</li>
-        <li>CuO 特徵峰對應 JCPDS 01-080-1268（單斜晶系），隨摻雜比例增加而更明顯</li>
-        <li>無雜峰 → <span class="gd">純度高</span>，確認 ZnO + CuO 兩相成功共存</li>
-      </ul>
-      <h3>XPS — 確認「兩者有沒有交互作用」</h3>
-      <ul>
-        <li>Zn 2p、Cu 2p 峰 → 確認 Zn²⁺ 和 Cu²⁺ 存在</li>
-        <li><span class="hl">關鍵發現</span>：O 1s 結合能從 531.52 eV <span class="gd">正移 0.3 eV</span> 至 531.82 eV</li>
-        <li>正移 = ZnO 的電子雲密度降低 = 電子從 ZnO 轉移到 CuO</li>
-        <li>→ 證實 ZnO 和 CuO 之間存在<span class="hl">電子交互作用</span>，PN 異質結確實形成</li>
-      </ul>
-    </div>
-    <div class="ic">
-      <div class="fig-highlight">
+      <div class="fig-highlight" style="max-height:48%;">
         <span class="fig-label">Fig. 2</span>
         <img src="papers/me/images/fig2_xrd_xps.png" alt="XRD XPS">
       </div>
-      <div class="cap">(a) XRD 圖譜 (b) XPS 全譜 (c) Zn 2p 高解析 (d) O 1s 高解析</div>
     </div>
   </div>
-  <div class="sn">9 / 18</div>
+  <div class="sn">5 / 11</div>
 </div>
 
-<!-- ========== S10: 摻雜比例與光學分析（合併原 S9+S13） ========== -->
-<div class="slide" id="s10" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">04 鑑定</span><h2>CuO 摻雜比例與光學性質</h2></div>
+<!-- ========== S6: 光學與電化學性質（合併原 S10+S11） ========== -->
+<div class="slide" id="s6" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">04 鑑定</span><h2>光學與電化學性質</h2></div>
   <div class="sb">
     <div class="tc">
-      <h3>六種 ZC 複合光觸媒</h3>
+      <h3>UV-Vis DRS & Band Gap</h3>
       <table>
-        <tr><th>樣品</th><th>band gap (eV)</th><th>阻抗 (Ω)</th><th>k (min⁻¹)</th></tr>
+        <tr><th>樣品</th><th>Band Gap (eV)</th><th>阻抗 (Ω)</th><th>k (min⁻¹)</th></tr>
         <tr><td>純 ZnO</td><td><span class="wr">3.12</span></td><td>4227</td><td>0.003</td></tr>
-        <tr><td>ZC₀.₁</td><td>2.97</td><td>3704</td><td>—</td></tr>
-        <tr><td>ZC₀.₂</td><td>2.87</td><td>2371</td><td>—</td></tr>
         <tr><td style="color:var(--accent); font-weight:700;">ZC₀.₃ ★</td><td style="color:var(--green); font-weight:700;">2.78</td><td>1906</td><td style="color:var(--green); font-weight:700;">0.019</td></tr>
-        <tr><td>ZC₀.₅</td><td>2.88</td><td>1600</td><td>—</td></tr>
         <tr><td>純 CuO</td><td>1.51</td><td>1439</td><td>—</td></tr>
       </table>
-      <h3>UV-Vis DRS 結果</h3>
       <ul>
-        <li>純 ZnO 吸收邊 ~400 nm（紫外區）→ CuO 摻雜後<span class="gd">顯著紅移至 ~900 nm</span></li>
-        <li>ZC₀.₃ 的 band gap 降至 <span class="gd">2.78 eV</span>（系列最低），k 為 ZnO 的 <span class="gd">6.33 倍</span></li>
+        <li>CuO 摻雜使吸收邊從 ~400 nm <span class="gd">紅移至 ~900 nm</span></li>
+        <li>ZC₀.₃ 的 k 為 ZnO 的 <span class="gd">6.33 倍</span></li>
       </ul>
-      <h3>Mott-Schottky 分析</h3>
+      <h3>光電流與 EIS</h3>
       <ul>
-        <li>所有 ZC 複合物斜率為正 → 維持 <span class="hl">n 型半導體</span>特性</li>
-        <li>平帶電位隨 CuO 增加正移（-0.53V → -0.30V）→ CuO 改變能帶結構</li>
+        <li>ZC 複合光觸媒光電流密度<span class="gd">均高於純 ZnO</span></li>
+        <li>EIS 阻抗：ZnO 4227 Ω → ZC₀.₃ <span class="gd">1906 Ω</span>（降 55%）</li>
+        <li>PN 異質結有效加速光生 e⁻/h⁺ 分離</li>
       </ul>
     </div>
-    <div class="ic">
-      <div class="fig-highlight">
+    <div class="ic-dual">
+      <div class="fig-highlight" style="max-height:48%;">
         <span class="fig-label">Fig. 3</span>
         <img src="papers/me/images/fig3_uvvis_drs.png" alt="UV-Vis DRS">
       </div>
-      <div class="cap">(a) UV-Vis DRS (b) Tauc plot band gap (c) Mott-Schottky (d) 能帶結構</div>
-    </div>
-  </div>
-  <div class="sn">10 / 18</div>
-</div>
-
-<!-- ========== S11: 光電化學（原 S14） ========== -->
-<div class="slide" id="s11" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">04 鑑定</span><h2>光電化學性能 — 光電流與 EIS</h2></div>
-  <div class="sb">
-    <div class="tc">
-      <h3>光電流響應（Photocurrent）</h3>
-      <ul>
-        <li>光電流密度反映光生電子-空穴對的<span class="hl">分離效率</span></li>
-        <li>ZC 複合光觸媒的光電流密度<span class="gd">均高於純 ZnO</span></li>
-        <li>隨 CuO 含量增加，光電流逐漸上升</li>
-        <li>ZC₀.₃、ZC₀.₄、ZC₀.₅ 光電流密度相近 → 0.3 已達飽和</li>
-      </ul>
-      <h3>電化學阻抗（EIS）</h3>
-      <table>
-        <tr><th>樣品</th><th>阻抗 (Ω)</th><th>意義</th></tr>
-        <tr><td>ZnO</td><td>4227</td><td>電荷傳輸慢</td></tr>
-        <tr><td>ZC₀.₁</td><td>3704</td><td>↓</td></tr>
-        <tr><td>ZC₀.₂</td><td>2371</td><td>↓</td></tr>
-        <tr><td><span class="hl">ZC₀.₃</span></td><td><span class="gd">1906</span></td><td>電荷傳輸快</td></tr>
-        <tr><td>CuO</td><td>1439</td><td>最低</td></tr>
-      </table>
-      <p style="margin-top:8px; font-size:13px;">CuO 的低 band gap 促進光生電子與空穴的分離，PN 接面降低 band gap、拓寬光吸收範圍，加速載子分離效率。</p>
-    </div>
-    <div class="ic">
-      <div class="fig-highlight">
+      <div class="fig-highlight" style="max-height:48%;">
         <span class="fig-label">Fig. 4</span>
         <img src="papers/me/images/fig4_photocurrent_eis.png" alt="光電流 EIS">
       </div>
-      <div class="cap">(a) 光電流響應（開/關循環） (b) EIS Nyquist 圖</div>
     </div>
   </div>
-  <div class="sn">11 / 18</div>
+  <div class="sn">6 / 11</div>
 </div>
 
-<!-- ========== S12: 光催化降解結果（合併原 S15+S16） ========== -->
-<div class="slide" id="s12" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">05 數據</span><h2>光催化降解結果</h2></div>
+<!-- ========== S7: 降解結果與 RSM（合併原 S12+S14） ========== -->
+<div class="slide" id="s7" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">05 數據</span><h2>光催化降解結果與 RSM 最佳化</h2></div>
   <div class="sb">
     <div class="tc">
       <h3>CuO 摻雜比例的影響</h3>
       <ul>
-        <li>暗反應 30 min：TC 幾乎不變 → <span class="hl">吸附可忽略</span></li>
         <li>純 ZnO 僅去除 <span class="wr">18.21%</span>，ZC₀.₃ 達 <span class="gd">68.47%</span></li>
-        <li>ZC₀.₃ → ZC₀.₅ 去除率不變（~69%）→ <span class="gd">0.3 為最佳比例</span></li>
-        <li>純 CuO 56% < ZC₀.₃ 68% → 複合效果優於單一材料</li>
+        <li>ZC₀.₃→ZC₀.₅ 去除率相近 → <span class="gd">0.3 為最佳比例</span></li>
         <li>k = <span class="gd">0.019 min⁻¹</span>（ZnO 的 6.33 倍）</li>
       </ul>
-      <h3>催化劑用量與 TC 濃度</h3>
+      <h3>RSM 回應曲面最佳化（Box-Behnken）</h3>
       <ul>
-        <li>最佳用量 <span class="gd">0.20 g/L</span>（去除率 71.36%）— 過高則溶液混濁阻礙光穿透</li>
-        <li>最佳 TC 濃度 <span class="gd">10 mg/L</span>（去除率 78.91%）— 過高則毒化催化劑表面</li>
+        <li>三因子：CuO 比（0.1–0.5）、用量（0.10–0.30 g/L）、TC 濃度（5–15 mg/L）</li>
       </ul>
+      <div class="cards" style="grid-template-columns: repeat(4, 1fr); margin-top:8px;">
+        <div class="card" style="padding:12px;"><div class="lb">最佳 CuO 比</div><div class="vl" style="font-size:20px;">0.3</div></div>
+        <div class="card" style="padding:12px;"><div class="lb">最佳用量</div><div class="vl" style="font-size:20px;">0.20 g/L</div></div>
+        <div class="card" style="padding:12px;"><div class="lb">最佳 TC</div><div class="vl" style="font-size:20px;">8.36 mg/L</div></div>
+        <div class="card" style="padding:12px;"><div class="lb">最高去除率</div><div class="vl green" style="font-size:20px;">90.89%</div></div>
+      </div>
     </div>
-    <div class="ic">
-      <div class="fig-highlight">
+    <div class="ic-dual">
+      <div class="fig-highlight" style="max-height:48%;">
         <span class="fig-label">Fig. 5</span>
         <img src="papers/me/images/fig5_degradation.png" alt="降解曲線">
       </div>
-      <div class="cap">(a) CuO 比例降解曲線 (b) 用量影響 (c) 濃度影響 (d-f) 反應速率常數</div>
-    </div>
-  </div>
-  <div class="sn">12 / 18</div>
-</div>
-
-<!-- ========== S13: 活性物種鑑定（原 S17） ========== -->
-<div class="slide" id="s13" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">05 數據</span><h2>活性物種鑑定 — 自由基捕獲與 EPR</h2></div>
-  <div class="sb">
-    <div class="tc">
-      <h3>自由基捕獲實驗</h3>
-      <p>分別加入捕獲劑抑制特定活性物種，觀察去除率變化（對照組去除率 92.47%）：</p>
-      <table>
-        <tr><th>捕獲劑</th><th>抑制物種</th><th>去除率</th><th>貢獻率</th></tr>
-        <tr><td>KI（15 mM）</td><td>h⁺（空穴）</td><td><span class="wr">39.01%</span></td><td><span class="hl">55.91%</span></td></tr>
-        <tr><td>BQ（5 mM）</td><td>·O₂⁻</td><td><span class="wr">56.98%</span></td><td><span class="bl">38.08%</span></td></tr>
-        <tr><td>TBA（300 mM）</td><td>·OH</td><td>66.35%</td><td><span class="gd">26.44%</span></td></tr>
-      </table>
-      <h3>活性物種重要性排序</h3>
-      <p style="font-size:18px; text-align:center; margin:14px 0; color:var(--text-primary);">
-        <span class="hl">h⁺</span> &gt; <span class="bl">·O₂⁻</span> &gt; <span class="gd">·OH</span>
-      </p>
-      <h3>EPR 驗證</h3>
-      <ul>
-        <li>DMPO 為自旋捕獲劑</li>
-        <li>光照下偵測到 <span class="bl">DMPO-·O₂⁻</span> 和 <span class="gd">DMPO-·OH</span> 特徵訊號</li>
-        <li>暗反應無訊號 → 活性物種由<span class="hl">光激發產生</span></li>
-      </ul>
-    </div>
-    <div class="ic">
-      <div class="fig-highlight">
-        <span class="fig-label">Fig. 10</span>
-        <img src="papers/me/images/fig10_radical_epr.png" alt="自由基捕獲 EPR">
-      </div>
-      <div class="cap">(a) 自由基捕獲實驗 — BQ/TBA/KI 對照 (b) EPR 圖譜 — ·OH 與 ·O₂⁻ 訊號</div>
-    </div>
-  </div>
-  <div class="sn">13 / 18</div>
-</div>
-
-<!-- ========== S14: RSM（原 S18） ========== -->
-<div class="slide" id="s14" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">06 RSM</span><h2>回應曲面法（RSM）參數最佳化</h2></div>
-  <div class="sb">
-    <div class="tc">
-      <h3>Box-Behnken 設計（BBD）</h3>
-      <p>三因子三水準實驗設計：</p>
-      <table>
-        <tr><th>因子</th><th>符號</th><th>範圍</th></tr>
-        <tr><td>CuO 摻雜比</td><td>X₁</td><td>0.1 – 0.5</td></tr>
-        <tr><td>催化劑用量</td><td>X₂</td><td>0.10 – 0.30 g/L</td></tr>
-        <tr><td>TC 濃度</td><td>X₃</td><td>5 – 15 mg/L</td></tr>
-      </table>
-      <h3>二次多項式回歸方程</h3>
-      <div class="eq">
-        Y = 3.7475 − 13.05X₁ − 0.22458X₂ − 12.9X₃<br>
-        &nbsp;&nbsp;− 0.0915X₁X₂ + 6X₁X₃ + 0.1X₂X₃<br>
-        &nbsp;&nbsp;+ 0.04X₁² + 18.25X₂² + 0.0031X₃²
-      </div>
-      <h3>RSM 最佳化結果</h3>
-      <div class="cards">
-        <div class="card"><div class="lb">最佳 CuO 比</div><div class="vl">0.3</div></div>
-        <div class="card"><div class="lb">最佳用量</div><div class="vl">0.20 g/L</div></div>
-        <div class="card"><div class="lb">最佳 TC</div><div class="vl">8.36 mg/L</div></div>
-        <div class="card"><div class="lb">最高去除率</div><div class="vl green">90.89%</div></div>
-      </div>
-    </div>
-    <div class="ic">
-      <div class="fig-highlight">
+      <div class="fig-highlight" style="max-height:48%;">
         <span class="fig-label">Fig. 6</span>
         <img src="papers/me/images/fig6_rsm.png" alt="RSM">
       </div>
-      <div class="cap">(a) CuO 比×用量 (b) CuO 比×TC 濃度 (c) 用量×TC 濃度 — 三維回應曲面圖</div>
     </div>
   </div>
-  <div class="sn">14 / 18</div>
+  <div class="sn">7 / 11</div>
 </div>
 
-<!-- ========== S15: 穩定性與日光驗證（合併原 S19+S20） ========== -->
-<div class="slide" id="s15" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+<!-- ========== S8: 活性物種與光催化機制（合併原 S13+S17） ========== -->
+<div class="slide" id="s8" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">06 機制</span><h2>活性物種與光催化機制</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>自由基捕獲實驗</h3>
+      <table>
+        <tr><th>捕獲劑</th><th>抑制物種</th><th>去除率</th><th>貢獻</th></tr>
+        <tr><td>KI</td><td>h⁺（空穴）</td><td><span class="wr">39.01%</span></td><td><span class="hl">最大</span></td></tr>
+        <tr><td>BQ</td><td>·O₂⁻</td><td><span class="wr">56.98%</span></td><td><span class="bl">次之</span></td></tr>
+        <tr><td>TBA</td><td>·OH</td><td>66.35%</td><td><span class="gd">第三</span></td></tr>
+      </table>
+      <p style="font-size:15px; text-align:center; margin:10px 0; color:var(--text-primary);">
+        活性物種排序：<span class="hl">h⁺</span> &gt; <span class="bl">·O₂⁻</span> &gt; <span class="gd">·OH</span>
+      </p>
+      <h3>PN 異質結光催化過程</h3>
+      <div class="eq" style="font-size:12.5px; padding:10px 14px;">
+        ZC + hν → e⁻(CB) + h⁺(VB)<br>
+        e⁻ + O₂ → ·O₂⁻ ;&nbsp; ·O₂⁻ + H₂O → ·OH<br>
+        h⁺ + OH⁻ → ·OH<br>
+        h⁺ + ·OH + ·O₂⁻ + TC → <span style="color:var(--green);">CO₂ + H₂O</span>
+      </div>
+      <p style="font-size:13px;">CuO 拓寬光吸收（400→900 nm），PN 接面加速 e⁻/h⁺ 分離（阻抗降 55%），更多載子參與反應產生自由基。</p>
+    </div>
+    <div class="ic-dual">
+      <div class="fig-highlight" style="max-height:48%;">
+        <span class="fig-label">Fig. 10</span>
+        <img src="papers/me/images/fig10_radical_epr.png" alt="自由基捕獲 EPR">
+      </div>
+      <div class="fig-highlight" style="max-height:48%;">
+        <span class="fig-label">Fig. 11</span>
+        <img src="papers/me/images/fig11_mechanism.png" alt="機制圖">
+      </div>
+    </div>
+  </div>
+  <div class="sn">8 / 11</div>
+</div>
+
+<!-- ========== S9: 穩定性與日光驗證 ========== -->
+<div class="slide" id="s9" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
   <div class="sh"><span class="tag">07 穩定性</span><h2>穩定性與日光驗證</h2></div>
   <div class="sb">
     <div class="tc">
@@ -910,17 +693,16 @@
       </div>
     </div>
   </div>
-  <div class="sn">15 / 18</div>
+  <div class="sn">9 / 11</div>
 </div>
 
-<!-- ========== S16: 降解途徑與毒性（原 S21） ========== -->
-<div class="slide" id="s16" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+<!-- ========== S10: 降解途徑與毒性 ========== -->
+<div class="slide" id="s10" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
   <div class="sh"><span class="tag">08 途徑</span><h2>TC 降解途徑與毒性評估</h2></div>
   <div class="sb">
     <div class="tc">
       <h3>LC-MS/MS 中間產物鑑定</h3>
       <ul>
-        <li>使用三重四極桿液相層析串聯質譜儀分析</li>
         <li>鑑定出 9 個中間產物（P1–P9），建立<span class="hl">完整降解路徑圖</span></li>
       </ul>
       <h3>主要降解過程</h3>
@@ -928,12 +710,12 @@
         <li>TC(P0) 的 C=C 雙鍵被自由基斷裂 → <span class="hl">P1</span></li>
         <li>P1 的羥基被 h⁺/自由基氧化 → P2、P3</li>
         <li>氨基碳鏈斷裂 → P4、P5</li>
-        <li>六元碳環進一步斷裂 → P6、P7 → 被強氧化為 P8 → P9</li>
+        <li>六元碳環進一步斷裂 → P6、P7 → P8 → P9</li>
         <li>最終：P9 → <span class="gd">CO₂ + H₂O</span></li>
       </ul>
       <h3>毒性評估與礦化率</h3>
       <ul>
-        <li>ECOSAR 軟體（美國 EPA 驗證）模擬 96 h LC50（對魚）</li>
+        <li>ECOSAR 軟體（美國 EPA）模擬 96 h LC50（對魚）</li>
         <li>降解過程中<span class="wr">可能產生比 TC 更毒的中間產物</span></li>
         <li>隨反應進行，中間產物進一步降解為<span class="gd">低毒或無毒</span>小分子</li>
         <li>TOC 分析：反應 1 h 後由 5.95 降至 0.63 mg/L，<span class="gd">礦化率 89.41%</span></li>
@@ -947,51 +729,11 @@
       <div class="cap">TC 降解路徑 — P0(444) → P1(405) → ... → P9(58) → CO₂ + H₂O</div>
     </div>
   </div>
-  <div class="sn">16 / 18</div>
+  <div class="sn">10 / 11</div>
 </div>
 
-<!-- ========== S17: 光催化機制（原 S22） ========== -->
-<div class="slide" id="s17" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
-  <div class="sh"><span class="tag">09 機制</span><h2>ZnO/CuO 光催化降解機制</h2></div>
-  <div class="sb">
-    <div class="tc">
-      <h3>PN 異質結光催化過程</h3>
-      <ol style="padding-left:18px;">
-        <li style="margin-bottom:6px;">ZnO + CuO 形成 <span class="hl">PN 異質結</span>，調控能帶結構</li>
-        <li style="margin-bottom:6px;">可見光照射 → 電子從 VB 躍遷至 CB → 產生 <span class="hl">h⁺</span></li>
-        <li style="margin-bottom:6px;">CB 上的 e⁻ 與溶解氧反應 → 生成 <span class="bl">·O₂⁻</span></li>
-        <li style="margin-bottom:6px;">·O₂⁻ 與水反應 → 生成 <span class="gd">·OH</span></li>
-        <li style="margin-bottom:6px;">VB 上的 h⁺ 氧化 OH⁻ → 額外生成 <span class="gd">·OH</span></li>
-        <li style="margin-bottom:6px;">h⁺ + ·OH + ·O₂⁻ → TC 礦化為 <span class="gd">CO₂ + H₂O</span></li>
-      </ol>
-      <h3>反應方程式</h3>
-      <div class="eq">
-        (3) ZC + hν → ZC(e⁻) + ZC(h⁺)<br>
-        (4) ZC(e⁻) + O₂ → ·O₂⁻<br>
-        (5) ·O₂⁻ + H₂O → ·OH + OH⁻<br>
-        (6) ZC(h⁺) + OH⁻ → ·OH<br>
-        (7) h⁺ + ·OH + ·O₂⁻ + TC → CO₂ + H₂O
-      </div>
-      <h3>CuO 的關鍵角色</h3>
-      <ul>
-        <li>拓寬光吸收範圍（400→900 nm）</li>
-        <li>加速光生 e⁻/h⁺ 分離（阻抗降 55%）</li>
-        <li>PN 接面內建電場驅動載子定向遷移</li>
-      </ul>
-    </div>
-    <div class="ic">
-      <div class="fig-highlight">
-        <span class="fig-label">Fig. 11</span>
-        <img src="papers/me/images/fig11_mechanism.png" alt="機制圖">
-      </div>
-      <div class="cap">ZnO/CuO PN 異質結光催化降解 TC 的完整機制 — e⁻/h⁺ 分離與自由基生成</div>
-    </div>
-  </div>
-  <div class="sn">17 / 18</div>
-</div>
-
-<!-- ========== S18: 結論（合併原 S23+S25） ========== -->
-<div class="slide cover" id="s18" style="background: radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 50%), linear-gradient(180deg, #0b0f19, #111827);">
+<!-- ========== S11: 結論 ========== -->
+<div class="slide cover" id="s11" style="background: radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.06) 0%, transparent 50%), linear-gradient(180deg, #0b0f19, #111827);">
   <h1 style="font-size:34px;">研究結論</h1>
   <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:900px; margin:28px auto 0; position:relative; text-align:left;">
     <div class="card" style="border-color:rgba(245,158,11,0.25);">
@@ -1020,13 +762,13 @@
     </div>
   </div>
   <div class="sub" style="font-size:20px; margin-top:36px;">謝謝聆聽，歡迎提問</div>
-  <div class="sn">18 / 18</div>
+  <div class="sn">11 / 11</div>
 </div>
 
 <!-- ===== 導航 ===== -->
 <div class="nav">
   <button onclick="go(-1)">← 上一頁</button>
-  <span class="pg" id="pgn">1 / 18</span>
+  <span class="pg" id="pgn">1 / 11</span>
   <button onclick="go(1)">下一頁 →</button>
 </div>
 <div class="key-hint">← → 方向鍵切換 ｜ Home / End 跳頁</div>
