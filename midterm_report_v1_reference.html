@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>期中報告 — ZnO/CuO 可見光複合光觸媒降解養殖廢水中四環素</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+  :root {
+    --bg-primary: #0b0f19;
+    --bg-secondary: #111827;
+    --bg-card: rgba(255,255,255,0.03);
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    --accent-glow: rgba(245,158,11,0.15);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --green: #34d399;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --purple: #a78bfa;
+    --border: rgba(255,255,255,0.06);
+  }
+
+  body {
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ===== 投影片基礎 ===== */
+  .slide {
+    width: 100vw; height: 100vh;
+    display: none;
+    padding: 48px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide.active {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.35s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== 進度條 ===== */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+    background: linear-gradient(90deg, var(--accent), #f97316);
+    transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(245,158,11,0.4);
+  }
+
+  /* ===== 頁碼 ===== */
+  .sn {
+    position: absolute; bottom: 18px; right: 40px;
+    font-size: 12px; color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== 封面 ===== */
+  .cover {
+    justify-content: center; align-items: center; text-align: center;
+    background: radial-gradient(ellipse at 30% 50%, rgba(245,158,11,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(59,130,246,0.04) 0%, transparent 60%),
+                linear-gradient(180deg, #0b0f19, #111827);
+  }
+  .cover::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .cover h1 {
+    font-size: 42px; font-weight: 900; line-height: 1.35; margin-bottom: 14px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+  .cover .sub {
+    font-size: 18px; color: var(--text-secondary); font-weight: 300;
+    max-width: 780px; line-height: 1.7; position: relative;
+  }
+  .cover .journal {
+    margin-top: 28px; font-size: 14px; color: var(--text-muted);
+    position: relative; line-height: 1.8;
+  }
+  .cover .journal em { color: var(--accent); font-style: normal; font-weight: 500; }
+  .cover .meta {
+    margin-top: 44px; font-size: 13px; color: var(--text-muted);
+    position: relative; letter-spacing: 1px;
+  }
+
+  /* ===== 標題區 ===== */
+  .sh {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px; flex-shrink: 0;
+  }
+  .sh .tag {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    color: #fff; padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .sh h2 {
+    font-size: 26px; font-weight: 700; color: var(--text-primary); line-height: 1.25;
+  }
+
+  /* ===== 內容區 ===== */
+  .sb {
+    flex: 1; display: flex; gap: 36px;
+    overflow: hidden; min-height: 0;
+  }
+  .sb.col1 { flex-direction: column; }
+  .tc {
+    flex: 1; overflow-y: auto; padding-right: 8px;
+    scrollbar-width: thin; scrollbar-color: #333 transparent;
+  }
+  .ic {
+    flex: 1; display: flex; flex-direction: column;
+    gap: 8px; align-items: center; justify-content: center;
+    overflow: hidden; min-width: 0;
+  }
+  .ic img {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  .ic img:hover { transform: scale(1.02); }
+  .ic.two img { max-height: 46%; }
+  .ic .cap {
+    font-size: 11px; color: var(--text-muted);
+    text-align: center; margin-top: 2px;
+    font-style: italic;
+  }
+
+  /* ===== 文字樣式 ===== */
+  .tc h3 {
+    font-size: 16px; font-weight: 700; color: var(--accent-light);
+    margin: 16px 0 6px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(245,158,11,0.1);
+  }
+  .tc h3:first-child { margin-top: 0; }
+  .tc p, .tc li {
+    font-size: 14.5px; line-height: 1.75; color: var(--text-secondary);
+  }
+  .tc ul { padding-left: 18px; }
+  .tc li { margin-bottom: 3px; }
+  .hl { color: var(--accent); font-weight: 600; }
+  .gd { color: var(--green); font-weight: 600; }
+  .wr { color: var(--red); font-weight: 600; }
+  .bl { color: var(--blue); font-weight: 600; }
+  .pp { color: var(--purple); font-weight: 600; }
+
+  /* ===== 表格 ===== */
+  table {
+    width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13.5px;
+  }
+  th {
+    background: rgba(245,158,11,0.08); color: var(--accent-light);
+    padding: 7px 10px; text-align: left; font-weight: 600;
+    border-bottom: 2px solid rgba(245,158,11,0.3);
+    font-size: 12.5px; letter-spacing: 0.3px;
+  }
+  td {
+    padding: 6px 10px; border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ===== 卡片 ===== */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; margin: 10px 0;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(245,158,11,0.2); }
+  .card .lb {
+    font-size: 10px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 4px;
+  }
+  .card .vl { font-size: 24px; font-weight: 700; color: var(--accent); }
+  .card .vl.green { color: var(--green); }
+
+  /* ===== 流程 ===== */
+  .flow {
+    display: flex; align-items: center; gap: 6px;
+    margin: 10px 0; flex-wrap: wrap;
+  }
+  .fs {
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.15);
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 13px; color: var(--text-secondary);
+    white-space: nowrap; text-align: center;
+    line-height: 1.4;
+  }
+  .fa { color: var(--text-muted); font-size: 16px; }
+
+  /* ===== 公式 ===== */
+  .eq {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px; margin: 8px 0;
+    font-size: 13.5px; color: var(--text-secondary);
+    line-height: 1.8;
+    font-family: 'Courier New', 'Consolas', monospace;
+  }
+
+  /* ===== 分隔頁 ===== */
+  .div-s {
+    justify-content: center; align-items: center; text-align: center;
+    background: radial-gradient(ellipse at 50% 50%, rgba(245,158,11,0.04) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+  }
+  .div-s .num {
+    font-size: 140px; font-weight: 900;
+    background: linear-gradient(180deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: -50px; user-select: none;
+  }
+  .div-s h2 { font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+  .div-s p { font-size: 15px; color: var(--text-muted); max-width: 600px; line-height: 1.7; }
+
+  /* ===== 導航 ===== */
+  .nav {
+    position: fixed; bottom: 10px; right: 12px;
+    display: flex; gap: 4px; z-index: 100;
+    opacity: 0.25; transition: opacity 0.3s;
+  }
+  .nav:hover { opacity: 0.8; }
+  .nav button {
+    background: transparent; border: none;
+    color: var(--text-muted); padding: 3px 8px; border-radius: 4px;
+    cursor: pointer; font-size: 11px; font-family: inherit;
+    transition: all 0.2s;
+  }
+  .nav button:hover { color: var(--text-secondary); }
+  .nav .pg {
+    color: var(--text-muted); font-size: 11px; line-height: 22px;
+    padding: 0 4px; font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== 鍵盤提示 ===== */
+  .key-hint { display: none; }
+
+  /* ===== 捲軸 ===== */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+  /* ===== 全寬佈局 ===== */
+  .wide-layout { max-width: 100%; }
+  .wide-layout .tc { flex: none; width: 100%; }
+
+  /* ===== 雙圖佈局 ===== */
+  .ic-dual {
+    flex: 1; display: flex; flex-direction: column;
+    gap: 10px; align-items: center; justify-content: center;
+    overflow: hidden; min-width: 0;
+  }
+  .ic-dual img {
+    max-width: 100%; max-height: 48%; object-fit: contain;
+    border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  .ic-dual img:hover { transform: scale(1.02); }
+
+  /* ===== 圖片強調框 ===== */
+  .fig-highlight {
+    position: relative;
+    border: 2px solid rgba(245,158,11,0.3);
+    border-radius: 10px; padding: 6px;
+    background: rgba(245,158,11,0.03);
+  }
+  .fig-label {
+    position: absolute; top: -10px; left: 12px;
+    background: var(--accent); color: #000;
+    font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 4px; letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar" style="width: 4%;"></div>
+
+<!-- ========== S1: 封面 ========== -->
+<div class="slide active" id="s1" style="padding:0; background: linear-gradient(135deg, #0b0f19 0%, #0f1629 50%, #131c33 100%); overflow:hidden;">
+  <!-- 內層 wrapper 負責左右佈局 -->
+  <div style="display:flex; flex-direction:row; width:100%; height:100%; position:relative;">
+    <!-- 左側裝飾線條 -->
+    <div style="position:absolute; top:0; left:0; width:4px; height:100%; background:linear-gradient(180deg, transparent 5%, #d97706 20%, #f59e0b 50%, #d97706 80%, transparent 95%);"></div>
+    <!-- 左側：報告資訊 -->
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:48px 44px 48px 52px; position:relative; z-index:1;">
+      <!-- 標籤 -->
+      <div style="margin-bottom:28px;">
+        <div style="display:inline-block; border:1.5px solid #d97706; color:#f59e0b; font-size:10px; font-weight:600; padding:5px 16px; border-radius:2px; letter-spacing:2.5px; text-transform:uppercase;">Midterm Report</div>
+      </div>
+      <!-- 中文標題 -->
+      <h1 style="font-size:34px; font-weight:800; line-height:1.4; margin-bottom:14px; color:#f1f5f9; letter-spacing:0.5px;">
+        可見光響應 ZnO/CuO<br>複合光觸媒降解<br>養殖廢水中四環素
+      </h1>
+      <!-- 英文副標 -->
+      <p style="font-size:13px; color:#94a3b8; line-height:1.75; max-width:420px; margin-bottom:28px; font-style:italic;">
+        Visible light-responsive ZnO-based composite<br>
+        photocatalysts for the degradation of tetracycline<br>
+        in mariculture wastewater
+      </p>
+      <!-- 期刊引用資訊 -->
+      <div style="margin-bottom:28px; padding:14px 18px; border-left:3px solid #d97706; background:rgba(217,119,6,0.06); border-radius:0 6px 6px 0;">
+        <div style="font-size:10px; color:#d97706; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; font-weight:600;">Source Paper</div>
+        <div style="font-size:12.5px; color:#cbd5e1; line-height:1.65;">
+          Journal of Water Process Engineering, <span style="font-weight:600;">68</span>, 2024, 106555
+        </div>
+        <div style="font-size:11px; color:#64748b; margin-top:3px;">
+          Yongdi Liu, Shixin Huang, Meina Huang <i>et al.</i>
+        </div>
+      </div>
+      <!-- 分隔線 + 學校資訊 -->
+      <div style="border-top:1px solid rgba(148,163,184,0.15); padding-top:18px; display:flex; align-items:center; gap:16px;">
+        <div style="width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(217,119,6,0.4); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:14px; font-weight:700; color:#f59e0b;">興</span>
+        </div>
+        <div>
+          <div style="font-size:13px; color:#e2e8f0; font-weight:600; letter-spacing:0.3px;">國立中興大學</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px; letter-spacing:0.3px;">奈米科技之污染防治應用 ｜ 2024 秋季</div>
+        </div>
+      </div>
+    </div>
+    <!-- 右側：論文標題截圖 -->
+    <div style="flex:0.82; display:flex; align-items:center; justify-content:center; padding:44px 44px 44px 0; position:relative;">
+      <div style="position:relative; border-radius:10px; overflow:hidden; box-shadow:0 12px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);">
+        <img src="papers/me/images/paper3_title_crop.png" alt="論文首頁" style="width:100%; display:block; border-radius:10px;">
+        <div style="position:absolute; bottom:0; left:0; right:0; height:50px; background:linear-gradient(transparent, rgba(11,15,25,0.7));"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sn">1 / 25</div>
+</div>
+
+<!-- ========== S2: 大綱 ========== -->
+<div class="slide" id="s2" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><h2>報告大綱</h2></div>
+  <div class="sb col1">
+    <div class="tc" style="display:flex; flex-direction:column; justify-content:center; max-width:700px; margin:0 auto;">
+      <table style="font-size:17px;">
+        <tr><td style="color:var(--accent); font-weight:700; width:40px;">01</td><td>研究動機與文獻回顧</td><td style="color:var(--text-muted); font-size:14px;">Slide 3–6</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">02</td><td>研究目標</td><td style="color:var(--text-muted); font-size:14px;">Slide 7</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">03</td><td>奈米材料設計概念</td><td style="color:var(--text-muted); font-size:14px;">Slide 8–9</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">04</td><td>材料合成方法</td><td style="color:var(--text-muted); font-size:14px;">Slide 10</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">05</td><td>材料鑑定結果</td><td style="color:var(--text-muted); font-size:14px;">Slide 11–14</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">06</td><td>光催化降解數據</td><td style="color:var(--text-muted); font-size:14px;">Slide 15–17</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">07</td><td>RSM 參數最佳化</td><td style="color:var(--text-muted); font-size:14px;">Slide 18</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">08</td><td>循環穩定性與實際應用</td><td style="color:var(--text-muted); font-size:14px;">Slide 19–20</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">09</td><td>降解途徑與毒性分析</td><td style="color:var(--text-muted); font-size:14px;">Slide 21</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">10</td><td>光催化機制</td><td style="color:var(--text-muted); font-size:14px;">Slide 22</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">11</td><td>結論</td><td style="color:var(--text-muted); font-size:14px;">Slide 23</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">12</td><td>個人心得</td><td style="color:var(--text-muted); font-size:14px;">Slide 24</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="sn">2 / 25</div>
+</div>
+
+<!-- ========== S3: 研究動機 ========== -->
+<div class="slide" id="s3" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">01 動機</span><h2>養殖廢水中的抗生素危機</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>全球背景</h3>
+      <ul>
+        <li>中國是全球<span class="hl">最大抗生素生產與消費國</span>，也擁有最大的海水養殖業</li>
+        <li>四環素類（TCs）被大量用於水產養殖中的<span class="wr">疾病防治與促進生長</span></li>
+        <li>缺乏抗生素排放標準 → 養殖廢水<span class="wr">直接排入環境</span></li>
+      </ul>
+      <h3>四環素（Tetracycline, TC）的危害</h3>
+      <ul>
+        <li>促進<span class="wr">抗藥性基因（ARGs）</span>擴散</li>
+        <li>通過食物鏈傳遞，威脅人類健康</li>
+        <li>破壞水生生態系統微生物群落</li>
+        <li>傳統廢水處理技術<span class="wr">難以有效去除</span>，可能產生更毒副產物</li>
+      </ul>
+      <h3>台灣的相關性</h3>
+      <ul>
+        <li>台灣水產養殖業發達（石斑、虱目魚、蝦類等）</li>
+        <li>養殖用藥管理是重要的食安與環保議題</li>
+        <li>本研究直接使用<span class="hl">天然海水</span>作為溶劑，貼近真實養殖環境</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <img src="papers/me/images/S2214714424017872_p1_0.jpeg" alt="期刊封面">
+      <div class="cap">Journal of Water Process Engineering — 發表期刊</div>
+    </div>
+  </div>
+  <div class="sn">3 / 25</div>
+</div>
+
+<!-- ========== S4: 文獻回顧 — 光催化 ========== -->
+<div class="slide" id="s4" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">01 文獻</span><h2>光催化技術的優勢與挑戰</h2></div>
+  <div class="sb">
+    <div class="tc" style="flex:1.2;">
+      <h3>抗生素去除方法比較</h3>
+      <table>
+        <tr><th>方法</th><th>優點</th><th>缺點</th></tr>
+        <tr><td>生物處理</td><td>成本低</td><td>對抗生素降解效率低</td></tr>
+        <tr><td>物理吸附</td><td>操作簡單</td><td>不能真正分解，需後續處理</td></tr>
+        <tr><td>高級氧化（AOP）</td><td>效率高</td><td>需化學試劑，成本高</td></tr>
+        <tr><td><span class="gd">光催化</span></td><td><span class="gd">高效、無二次污染、可利用太陽光</span></td><td>催化劑回收困難</td></tr>
+      </table>
+      <h3>為什麼選 ZnO？</h3>
+      <ul>
+        <li>ZnO 是一種<span class="hl">n 型半導體</span>，化學穩定性好、成本低</li>
+        <li>光催化活性高，抗菌性能優異</li>
+        <li>但<span class="wr">能隙 3.12 eV</span> → 僅能被紫外光（&lt; 400 nm）激發</li>
+        <li>紫外光僅佔太陽光的 <span class="wr">~5%</span> → 可見光利用率極低</li>
+        <li>光生電子-空穴對<span class="wr">複合率高</span>，降低催化效率</li>
+      </ul>
+      <h3>改性策略文獻</h3>
+      <ul>
+        <li>金屬/金屬氧化物摻雜形成異質結（如 Ag-ZnO, Fe₂O₃/ZnO）</li>
+        <li>非金屬材料複合（如 g-C₃N₄/ZnO）</li>
+        <li>先前研究：ZnO 基複合光觸媒去除 TC 最高達 80.18%</li>
+      </ul>
+    </div>
+    <div class="ic" style="flex:0.8;">
+      <!-- 自訂圖表：太陽光光譜分佈 -->
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:24px; width:100%;">
+        <h3 style="color:var(--accent-light); margin-bottom:16px; font-size:15px; text-align:center; border:none;">太陽光光譜組成</h3>
+        <div style="display:flex; align-items:end; justify-content:center; gap:20px; height:160px; margin-bottom:12px;">
+          <div style="text-align:center;">
+            <div style="width:64px; height:24px; background:linear-gradient(180deg,#7c3aed,#4c1d95); border-radius:4px 4px 0 0;"></div>
+            <div style="font-size:20px; font-weight:700; color:var(--purple); margin-top:6px;">5%</div>
+            <div style="font-size:11px; color:var(--text-muted);">紫外光<br>&lt;400nm</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:64px; height:100px; background:linear-gradient(180deg,#fbbf24,#d97706); border-radius:4px 4px 0 0;"></div>
+            <div style="font-size:20px; font-weight:700; color:var(--accent); margin-top:6px;">43%</div>
+            <div style="font-size:11px; color:var(--text-muted);">可見光<br>400-700nm</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:64px; height:120px; background:linear-gradient(180deg,#dc2626,#7f1d1d); border-radius:4px 4px 0 0;"></div>
+            <div style="font-size:20px; font-weight:700; color:var(--red); margin-top:6px;">52%</div>
+            <div style="font-size:11px; color:var(--text-muted);">紅外光<br>&gt;700nm</div>
+          </div>
+        </div>
+        <p style="font-size:12px; color:var(--text-muted); text-align:center; line-height:1.5;">
+          ZnO 僅能利用 5% 的紫外光<br>
+          <span style="color:var(--accent);">→ 如何拓展至可見光區是關鍵問題</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="sn">4 / 25</div>
+</div>
+
+<!-- ========== S5: 為什麼選 CuO ========== -->
+<div class="slide" id="s5" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">01 文獻</span><h2>為什麼選擇 CuO 摻雜？</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>CuO 的特性</h3>
+      <ul>
+        <li>CuO 是<span class="hl">p 型半導體</span>（因氧空位缺陷）</li>
+        <li>能隙僅 <span class="hl">1.2 eV</span> → 對可見光有良好響應</li>
+        <li>成本低廉、製備簡單、化學穩定性優異</li>
+        <li>具有光化學穩定性，適合長期使用</li>
+      </ul>
+      <h3>PN 異質結概念</h3>
+      <ul>
+        <li>CuO（p 型）+ ZnO（n 型）→ 形成 <span class="gd">PN 異質結</span></li>
+        <li>內建電場促進光生電子-空穴對的<span class="gd">有效分離</span></li>
+        <li>降低複合率 → 更多自由基產生 → 更高降解效率</li>
+      </ul>
+      <h3>本研究的文獻缺口</h3>
+      <ul>
+        <li>大多數研究使用<span class="wr">淡水</span>作為溶劑 → 不適用於海水養殖場景</li>
+        <li>粉體催化劑<span class="wr">回收效率低</span></li>
+        <li>本研究創新：
+          <ul>
+            <li>使用<span class="gd">天然過濾海水</span>作為溶劑</li>
+            <li>將催化劑負載於<span class="gd">聚丙烯多面球（PMSS）</span>上以利回收</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="ic">
+      <!-- 自訂能隙比較圖 -->
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:28px; text-align:center; width:100%;">
+        <h3 style="color:var(--accent-light); margin-bottom:20px; font-size:15px; border:none;">能隙（Band Gap）比較</h3>
+        <div style="display:flex; justify-content:center; gap:36px; align-items:end; margin-bottom:16px;">
+          <div>
+            <div style="width:76px; height:200px; background:linear-gradient(180deg,#7c3aed,#4c1d95); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">3.12 eV</div>
+            <div style="color:var(--text-secondary); margin-top:8px; font-size:13px;">ZnO<br><span style="color:var(--red);">僅 UV</span></div>
+          </div>
+          <div>
+            <div style="width:76px; height:178px; background:linear-gradient(180deg,#f59e0b,#d97706); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">2.78 eV</div>
+            <div style="color:var(--text-secondary); margin-top:8px; font-size:13px;">ZC₀.₃<br><span style="color:var(--green);">可見光!</span></div>
+          </div>
+          <div>
+            <div style="width:76px; height:77px; background:linear-gradient(180deg,#dc2626,#7f1d1d); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:18px;">1.2 eV</div>
+            <div style="color:var(--text-secondary); margin-top:8px; font-size:13px;">CuO<br><span style="color:var(--green);">紅外光</span></div>
+          </div>
+        </div>
+        <p style="color:var(--text-muted); font-size:12px; line-height:1.5;">CuO 摻雜將 ZnO 能隙從 3.12 降至 2.78 eV<br>光吸收從 400 nm 拓展至 900 nm</p>
+      </div>
+    </div>
+  </div>
+  <div class="sn">5 / 25</div>
+</div>
+
+<!-- ========== S6: 粉體回收挑戰 ========== -->
+<div class="slide" id="s6" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">01 文獻</span><h2>粉體催化劑的回收挑戰</h2></div>
+  <div class="sb col1">
+    <div class="tc" style="max-width:100%;">
+      <div style="display:flex; gap:32px;">
+        <div style="flex:1;">
+          <h3>粉體光觸媒的問題</h3>
+          <ul>
+            <li>奈米粉體催化劑分散在溶液中後，<span class="wr">難以完全回收</span></li>
+            <li>離心或過濾耗時耗能，不適合大規模應用</li>
+            <li>殘留的催化劑粉末可能造成<span class="wr">二次污染</span></li>
+          </ul>
+          <h3>本研究的解決方案：PMSS 固定化</h3>
+          <ul>
+            <li><span class="hl">聚丙烯多面球（PMSS）</span></li>
+            <li>將 ZC 光觸媒粉末透過浸漬法固定在 PMSS 表面</li>
+            <li>球型結構提供大表面積，聚丙烯耐酸鹼、耐海水腐蝕</li>
+            <li>反應後<span class="gd">撈出即可回收</span>，可反覆使用</li>
+          </ul>
+        </div>
+        <div style="flex:1;">
+          <h3>四大創新總結</h3>
+          <div class="cards" style="grid-template-columns: 1fr 1fr;">
+            <div class="card" style="border-color:rgba(245,158,11,0.2);">
+              <div class="lb">創新 1</div>
+              <div style="color:var(--accent); font-size:14px; line-height:1.5;">CuO/ZnO PN 異質結<br>拓展可見光響應</div>
+            </div>
+            <div class="card" style="border-color:rgba(52,211,153,0.2);">
+              <div class="lb">創新 2</div>
+              <div style="color:var(--green); font-size:14px; line-height:1.5;">天然海水<br>作為實驗溶劑</div>
+            </div>
+            <div class="card" style="border-color:rgba(96,165,250,0.2);">
+              <div class="lb">創新 3</div>
+              <div style="color:var(--blue); font-size:14px; line-height:1.5;">PMSS 固定化<br>解決回收問題</div>
+            </div>
+            <div class="card" style="border-color:rgba(167,139,250,0.2);">
+              <div class="lb">創新 4</div>
+              <div style="color:var(--purple); font-size:14px; line-height:1.5;">RSM 回應曲面<br>最佳化參數</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sn">6 / 25</div>
+</div>
+
+<!-- ========== S7: 研究目標 ========== -->
+<div class="slide div-s" id="s7">
+  <div class="num">02</div>
+  <h2>研究目標</h2>
+  <p style="margin-top:24px; max-width:700px; text-align:left;">
+    <span style="color:var(--accent); font-weight:700;">1.</span> 以共沉澱法合成不同 CuO 摻雜比例的 ZnO/CuO（ZC）複合光觸媒<br><br>
+    <span style="color:var(--accent); font-weight:700;">2.</span> 探討 CuO 摻雜對形貌、能隙、光電性質的影響<br><br>
+    <span style="color:var(--accent); font-weight:700;">3.</span> 系統研究各反應參數對 TC 去除的影響，並以 RSM 求取最佳條件<br><br>
+    <span style="color:var(--accent); font-weight:700;">4.</span> 將催化劑固定於 PMSS 載體以實現高效循環使用<br><br>
+    <span style="color:var(--accent); font-weight:700;">5.</span> 鑑定 TC 降解中間產物並評估毒性<br><br>
+    <span style="color:var(--accent); font-weight:700;">6.</span> 闡明 ZC 複合光觸媒的光催化降解機制
+  </p>
+  <div class="sn">7 / 25</div>
+</div>
+
+<!-- ========== S8: 材料設計概念 — PN 異質結 ========== -->
+<div class="slide" id="s8" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">03 設計</span><h2>奈米材料設計概念 — PN 異質結</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>設計思路</h3>
+      <p>將 <span class="bl">p 型半導體 CuO</span> 與 <span class="hl">n 型半導體 ZnO</span> 結合，利用 PN 異質結的內建電場加速光生載子分離。</p>
+      <h3>ZnO（n 型半導體）</h3>
+      <ul>
+        <li>纖鋅礦（wurtzite）結構，能隙 3.12 eV</li>
+        <li>電子為多數載子，提供<span class="hl">電子供體</span>角色</li>
+      </ul>
+      <h3>CuO（p 型半導體）</h3>
+      <ul>
+        <li>單斜晶系結構，能隙 1.2–1.51 eV</li>
+        <li>空穴為多數載子，因氧空位缺陷形成 p 型特性</li>
+      </ul>
+      <h3>PN 異質結優勢</h3>
+      <ul>
+        <li>界面內建電場驅動 e⁻ 和 h⁺ 向<span class="gd">相反方向移動</span></li>
+        <li>有效抑制光生電子-空穴對的複合</li>
+        <li>更多載子參與光催化反應 → <span class="gd">更多自由基產生</span></li>
+        <li>能隙降至 2.78 eV → <span class="gd">可見光全覆蓋</span>（至 900 nm）</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 11</span>
+        <img src="papers/me/images/S2214714424017872_p9_2.jpeg" alt="PN 異質結機制圖">
+      </div>
+      <div class="cap">ZnO/CuO PN 異質結光催化機制示意圖 — CuO(CB) → ZnO(CB) 電子轉移</div>
+    </div>
+  </div>
+  <div class="sn">8 / 25</div>
+</div>
+
+<!-- ========== S9: 摻雜比例系列 ========== -->
+<div class="slide" id="s9" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">03 設計</span><h2>CuO 摻雜比例系列</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>六種 ZC 複合光觸媒</h3>
+      <table>
+        <tr><th>樣品</th><th>CuO:ZnO 莫爾比</th><th>能隙 (eV)</th><th>阻抗 (Ω)</th></tr>
+        <tr><td>純 ZnO</td><td>0:1</td><td><span class="wr">3.12</span></td><td>4227</td></tr>
+        <tr><td>ZC₀.₁</td><td>0.1:1</td><td>2.97</td><td>3704</td></tr>
+        <tr><td>ZC₀.₂</td><td>0.2:1</td><td>2.87</td><td>2371</td></tr>
+        <tr><td style="color:var(--accent); font-weight:700;">ZC₀.₃ ★</td><td>0.3:1</td><td style="color:var(--green); font-weight:700;">2.78</td><td>1906</td></tr>
+        <tr><td>ZC₀.₄</td><td>0.4:1</td><td>2.83</td><td>1766</td></tr>
+        <tr><td>ZC₀.₅</td><td>0.5:1</td><td>2.88</td><td>1600</td></tr>
+        <tr><td>純 CuO</td><td>—</td><td>1.51</td><td>1439</td></tr>
+      </table>
+      <h3>為什麼 ZC₀.₃ 最佳？</h3>
+      <ul>
+        <li>能隙降至 <span class="gd">2.78 eV</span>（最低點）</li>
+        <li>反應速率常數 k = <span class="gd">0.019 min⁻¹</span>（ZnO 的 6.33 倍）</li>
+        <li>超過 0.3 後：CuO 過多會增加<span class="wr">複合中心</span></li>
+        <li>ZC₀.₃ 是能隙降低與載子分離效率的<span class="hl">最佳平衡點</span></li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 3</span>
+        <img src="papers/me/images/S2214714424017872_p5_0.jpeg" alt="UV-Vis DRS">
+      </div>
+      <div class="cap">(a) UV-Vis DRS 吸收光譜 (b) Tauc plot 能隙 (c) Mott-Schottky (d) 能帶結構</div>
+    </div>
+  </div>
+  <div class="sn">9 / 25</div>
+</div>
+
+<!-- ========== S10: 合成方法 ========== -->
+<div class="slide" id="s10" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">04 合成</span><h2>材料合成方法 — 共沉澱法</h2></div>
+  <div class="sb col1">
+    <div class="tc" style="max-width:100%;">
+      <h3>合成步驟</h3>
+      <div class="flow" style="justify-content:center; margin:14px 0;">
+        <div class="fs">Zn(NO₃)₂·6H₂O<br>+ Cu(NO₃)₂·3H₂O</div>
+        <span class="fa">→</span>
+        <div class="fs">溶於去離子水<br>攪拌均勻</div>
+        <span class="fa">→</span>
+        <div class="fs">滴加 NaOH<br>共沉澱</div>
+        <span class="fa">→</span>
+        <div class="fs">離心洗滌<br>（水+乙醇）</div>
+        <span class="fa">→</span>
+        <div class="fs">105°C 乾燥<br>12 小時</div>
+        <span class="fa">→</span>
+        <div class="fs" style="border-color:rgba(52,211,153,0.4); color:var(--green);">500°C 煅燒<br>2 小時</div>
+      </div>
+      <div style="display:flex; gap:32px; margin-top:10px;">
+        <div style="flex:1;">
+          <h3>方法優勢</h3>
+          <ul>
+            <li><span class="gd">操作簡單</span>：無需高溫高壓設備、無毒有機溶劑</li>
+            <li><span class="gd">成本低廉</span>：原料為常見的金屬硝酸鹽</li>
+            <li><span class="gd">可規模化</span>：適合工業量產</li>
+            <li><span class="gd">可控性好</span>：透過調整 Cu/Zn 比例精確控制組成</li>
+          </ul>
+        </div>
+        <div style="flex:1;">
+          <h3>PMSS 固定化步驟</h3>
+          <div class="flow">
+            <div class="fs">ZC₀.₃ 粉末分散於水</div>
+            <span class="fa">→</span>
+            <div class="fs">浸漬聚丙烯球</div>
+            <span class="fa">→</span>
+            <div class="fs">乾燥固定</div>
+            <span class="fa">→</span>
+            <div class="fs" style="border-color:rgba(52,211,153,0.4); color:var(--green);">ZC₀.₃-PMSS</div>
+          </div>
+          <h3>光催化實驗條件</h3>
+          <ul>
+            <li>光源：氙燈（λ > 420 nm, 60 mW/cm²）模擬可見光</li>
+            <li>溶劑：<span class="hl">過濾天然海水</span>（非去離子水）</li>
+            <li>暗反應 30 min → 光照 60 min</li>
+            <li>TC 濃度以 HPLC（C18 柱）定量</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sn">10 / 25</div>
+</div>
+
+<!-- ========== S11: SEM / TEM ========== -->
+<div class="slide" id="s11" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">05 鑑定</span><h2>SEM / TEM 形貌分析</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>SEM 觀察結果</h3>
+      <ul>
+        <li><span class="hl">純 ZnO</span>：呈現紡錘形（spindle-like）奈米結構，均勻無團聚</li>
+        <li><span class="hl">ZC₀.₁–ZC₀.₅</span>：隨 CuO 增加，顆粒逐漸變圓，ZnO 與 CuO 結合更緊密</li>
+        <li><span class="gd">ZC₀.₃</span>：ZnO 與 CuO 緊密交錯，形成良好異質結構接觸</li>
+        <li><span class="hl">純 CuO</span>：呈現球形奈米顆粒</li>
+      </ul>
+      <h3>TEM / HRTEM（ZC₀.₃）</h3>
+      <ul>
+        <li>清晰可見 ZnO 與 CuO 的<span class="hl">界面接觸</span></li>
+        <li>晶格條紋對應 ZnO<span class="hl">(101)</span> 晶面</li>
+        <li>晶格條紋對應 CuO<span class="hl">(−111)</span> 晶面，確認 PN 結形成</li>
+        <li>確認兩相的緊密結合有利於載子傳輸</li>
+      </ul>
+      <h3>BET 比表面積</h3>
+      <div class="cards">
+        <div class="card"><div class="lb">純 ZnO</div><div class="vl" style="font-size:18px;">14.31 m²/g</div></div>
+        <div class="card"><div class="lb">ZC 複合</div><div class="vl green" style="font-size:18px;">18.72 m²/g</div><div style="font-size:10px; color:var(--text-muted);">增加 31%</div></div>
+        <div class="card"><div class="lb">孔徑</div><div class="vl" style="font-size:18px;">25.64 Å</div></div>
+      </div>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 1</span>
+        <img src="papers/me/images/S2214714424017872_p4_0.jpeg" alt="SEM TEM">
+      </div>
+      <div class="cap">(a-g) ZnO ~ CuO SEM 圖；(h) ZC₀.₃ TEM；(i) HRTEM 晶格條紋</div>
+    </div>
+  </div>
+  <div class="sn">11 / 25</div>
+</div>
+
+<!-- ========== S12: XRD + XPS ========== -->
+<div class="slide" id="s12" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">05 鑑定</span><h2>XRD 結晶結構與 XPS 化學態</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>XRD 分析</h3>
+      <ul>
+        <li><span class="hl">ZnO 特徵峰</span>：對應 JCPDS 01-070-2551（六方晶系結構）</li>
+        <li><span class="hl">CuO 特徵峰</span>：對應 JCPDS 01-080-1268（單斜晶系），隨摻雜比例增加而逐漸明顯</li>
+        <li>無其他雜峰 → 樣品<span class="gd">純度高</span></li>
+        <li>確認 ZnO + CuO 兩相共存的複合結構</li>
+      </ul>
+      <h3>XPS 分析</h3>
+      <ul>
+        <li><span class="hl">Zn 2p</span>：1021.22 eV (2p₃/₂) + 1044.31 eV (2p₁/₂)，確認 Zn²⁺</li>
+        <li><span class="hl">Cu 2p</span>：六個去卷積峰（932.89–962.38 eV），確認 Cu²⁺</li>
+        <li><span class="hl">O 1s</span>：
+          <ul>
+            <li>Zn-O 鍵 531.52 eV → ZC₀.₃ 中移至 531.82 eV（<span class="gd">正移 0.3 eV</span>）</li>
+            <li>Cu-O 鍵 529.09 eV（新出現）</li>
+            <li>結合能位移 → ZnO 和 CuO 間存在<span class="hl">電子交互作用</span></li>
+          </ul>
+        </li>
+      </ul>
+      <p style="margin-top:8px; font-size:13px;">O 1s 位移暗示 CuO 引入產生額外氧缺陷，有利光催化反應。</p>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 2</span>
+        <img src="papers/me/images/S2214714424017872_p4_1.jpeg" alt="XRD XPS">
+      </div>
+      <div class="cap">(a) XRD 圖譜 (b) XPS 全譜 (c) Zn 2p 高解析 (d) O 1s 高解析</div>
+    </div>
+  </div>
+  <div class="sn">12 / 25</div>
+</div>
+
+<!-- ========== S13: UV-Vis DRS ========== -->
+<div class="slide" id="s13" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">05 鑑定</span><h2>UV-Vis 吸收光譜與能隙分析</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>UV-Vis DRS 結果</h3>
+      <ul>
+        <li>純 ZnO：吸收邊在 ~400 nm（紫外區）</li>
+        <li>CuO 引入後 → 吸收邊<span class="gd">顯著紅移</span></li>
+        <li>ZC₀.₃–ZC₀.₅：吸收範圍拓展至 <span class="gd">~900 nm</span>（近紅外區）</li>
+        <li>CuO 含量越高，吸收強度越大</li>
+      </ul>
+      <h3>Tauc Plot 能隙計算</h3>
+      <table>
+        <tr><th>樣品</th><th>能隙 (eV)</th><th>相對 ZnO 降低</th></tr>
+        <tr><td>ZnO</td><td>3.12</td><td>—</td></tr>
+        <tr><td>ZC₀.₁</td><td>2.97</td><td>-0.15 eV</td></tr>
+        <tr><td>ZC₀.₂</td><td>2.87</td><td>-0.25 eV</td></tr>
+        <tr><td><span class="hl">ZC₀.₃</span></td><td><span class="gd">2.78</span></td><td><span class="gd">-0.34 eV</span></td></tr>
+        <tr><td>CuO</td><td>1.51</td><td>—</td></tr>
+      </table>
+      <h3>Mott-Schottky 分析</h3>
+      <ul>
+        <li>所有 ZC 複合物斜率為正 → 維持 <span class="hl">n 型半導體</span>特性</li>
+        <li>平帶電位隨 CuO 增加正移（-0.53V → -0.30V vs Ag/AgCl）</li>
+        <li>證實 CuO 摻雜改變了能帶結構</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 3</span>
+        <img src="papers/me/images/S2214714424017872_p5_0.jpeg" alt="UV-Vis DRS">
+      </div>
+      <div class="cap">(a) UV-Vis DRS (b) Tauc plot (c) Mott-Schottky (d) 能帶結構圖</div>
+    </div>
+  </div>
+  <div class="sn">13 / 25</div>
+</div>
+
+<!-- ========== S14: 光電化學 ========== -->
+<div class="slide" id="s14" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">05 鑑定</span><h2>光電化學性能 — 光電流與 EIS</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>光電流響應（Photocurrent）</h3>
+      <ul>
+        <li>光電流密度反映光生電子-空穴對的<span class="hl">分離效率</span></li>
+        <li>ZC 複合光觸媒的光電流密度<span class="gd">均高於純 ZnO</span></li>
+        <li>隨 CuO 含量增加，光電流逐漸上升</li>
+        <li>ZC₀.₃、ZC₀.₄、ZC₀.₅ 光電流密度相近 → 0.3 已達飽和</li>
+      </ul>
+      <h3>電化學阻抗（EIS）</h3>
+      <table>
+        <tr><th>樣品</th><th>阻抗 (Ω)</th><th>意義</th></tr>
+        <tr><td>ZnO</td><td>4227</td><td>電荷傳輸慢</td></tr>
+        <tr><td>ZC₀.₁</td><td>3704</td><td>↓</td></tr>
+        <tr><td>ZC₀.₂</td><td>2371</td><td>↓</td></tr>
+        <tr><td><span class="hl">ZC₀.₃</span></td><td><span class="gd">1906</span></td><td>電荷傳輸快</td></tr>
+        <tr><td>CuO</td><td>1439</td><td>最低</td></tr>
+      </table>
+      <p style="margin-top:8px; font-size:13px;">阻抗越低 → 電荷傳輸阻力越小。CuO 引入使阻抗降低 <span class="gd">55%</span>（4227 → 1906 Ω）。</p>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 4</span>
+        <img src="papers/me/images/S2214714424017872_p6_0.jpeg" alt="光電流 EIS">
+      </div>
+      <div class="cap">(a) 光電流響應（開/關循環） (b) EIS Nyquist 圖</div>
+    </div>
+  </div>
+  <div class="sn">14 / 25</div>
+</div>
+
+<!-- ========== S15: 降解效率 — 摻雜比 ========== -->
+<div class="slide" id="s15" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">06 數據</span><h2>CuO 摻雜比例對 TC 降解的影響</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>實驗結果</h3>
+      <ul>
+        <li>暗反應 30 min：TC 濃度幾乎不變 → <span class="hl">吸附可忽略</span></li>
+        <li>光照 60 min 後的 TC 去除率：</li>
+      </ul>
+      <table>
+        <tr><th>樣品</th><th>TC 去除率</th><th>k (min⁻¹)</th><th>倍率 vs ZnO</th></tr>
+        <tr><td>ZnO</td><td><span class="wr">18.21%</span></td><td>0.003</td><td>1×</td></tr>
+        <tr><td>ZC₀.₁</td><td>31.24%</td><td>—</td><td>1.7×</td></tr>
+        <tr><td>ZC₀.₂</td><td>55.11%</td><td>—</td><td>3.0×</td></tr>
+        <tr><td><span class="hl">ZC₀.₃</span></td><td><span class="gd">68.47%</span></td><td><span class="gd">0.019</span></td><td><span class="gd">6.33×</span></td></tr>
+        <tr><td>ZC₀.₄</td><td>69.01%</td><td>—</td><td>—</td></tr>
+        <tr><td>ZC₀.₅</td><td>69.04%</td><td>—</td><td>—</td></tr>
+        <tr><td>純 CuO</td><td>56.36%</td><td>—</td><td>—</td></tr>
+      </table>
+      <h3>分析</h3>
+      <ul>
+        <li>ZC₀.₃ → ZC₀.₅ 去除率幾乎不變 → <span class="gd">0.3 已達最佳平衡</span></li>
+        <li>純 CuO（56%）&lt; ZC₀.₃（68%）→ 複合效果 > 單一材料</li>
+        <li>k 值增加 <span class="gd">6.33 倍</span>，證實 PN 異質結加速效果</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 5</span>
+        <img src="papers/me/images/S2214714424017872_p6_1.jpeg" alt="降解曲線">
+      </div>
+      <div class="cap">(a) CuO 比例降解曲線 (b) 用量影響 (c) 濃度影響 (d-f) 反應速率常數</div>
+    </div>
+  </div>
+  <div class="sn">15 / 25</div>
+</div>
+
+<!-- ========== S16: 用量與濃度影響 ========== -->
+<div class="slide" id="s16" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">06 數據</span><h2>催化劑用量與 TC 濃度的影響</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>催化劑用量（ZC₀.₃）</h3>
+      <table>
+        <tr><th>用量 (g/L)</th><th>去除率</th><th>k (min⁻¹)</th></tr>
+        <tr><td>0.05</td><td>低</td><td>低</td></tr>
+        <tr><td><span class="hl">0.20</span></td><td><span class="gd">71.36%</span></td><td><span class="gd">0.021</span></td></tr>
+        <tr><td>0.30</td><td>下降</td><td>下降</td></tr>
+      </table>
+      <ul>
+        <li>用量過低 → 自由基產生不足</li>
+        <li>用量過高 → 溶液<span class="wr">變混濁</span>，阻礙光線穿透 → 效率反降</li>
+        <li>最佳用量：<span class="gd">0.20 g/L</span></li>
+      </ul>
+      <h3>TC 初始濃度</h3>
+      <table>
+        <tr><th>TC (mg/L)</th><th>去除率</th><th>k (min⁻¹)</th></tr>
+        <tr><td>5</td><td>低</td><td>低</td></tr>
+        <tr><td><span class="hl">10</span></td><td><span class="gd">78.91%</span></td><td><span class="gd">0.024</span></td></tr>
+        <tr><td>15+</td><td>下降</td><td>下降</td></tr>
+      </table>
+      <ul>
+        <li>濃度過低 → 自由基與 TC 接觸機率低</li>
+        <li>濃度過高 → TC 分子<span class="wr">毒化催化劑</span>，阻礙自由基生成</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 5 (b,c,e,f)</span>
+        <img src="papers/me/images/S2214714424017872_p6_1.jpeg" alt="參數影響">
+      </div>
+      <div class="cap">催化劑用量(b,e)與 TC 濃度(c,f)對去除率及反應速率常數的影響</div>
+    </div>
+  </div>
+  <div class="sn">16 / 25</div>
+</div>
+
+<!-- ========== S17: 自由基捕獲 + EPR ========== -->
+<div class="slide" id="s17" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">06 數據</span><h2>活性物種鑑定 — 自由基捕獲與 EPR</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>自由基捕獲實驗</h3>
+      <p>分別加入捕獲劑抑制特定活性物種，觀察去除率變化（對照組去除率 92.47%）：</p>
+      <table>
+        <tr><th>捕獲劑</th><th>抑制物種</th><th>去除率</th><th>貢獻率</th></tr>
+        <tr><td>KI（15 mM）</td><td>h⁺（空穴）</td><td><span class="wr">39.01%</span></td><td><span class="hl">55.91%</span></td></tr>
+        <tr><td>BQ（5 mM）</td><td>·O₂⁻</td><td><span class="wr">56.98%</span></td><td><span class="bl">38.08%</span></td></tr>
+        <tr><td>TBA（300 mM）</td><td>·OH</td><td>66.35%</td><td><span class="gd">26.44%</span></td></tr>
+      </table>
+      <h3>活性物種重要性排序</h3>
+      <p style="font-size:18px; text-align:center; margin:14px 0; color:var(--text-primary);">
+        <span class="hl">h⁺</span> &gt; <span class="bl">·O₂⁻</span> &gt; <span class="gd">·OH</span>
+      </p>
+      <h3>EPR 驗證</h3>
+      <ul>
+        <li>DMPO 為自旋捕獲劑</li>
+        <li>光照下偵測到 <span class="bl">DMPO-·O₂⁻</span> 和 <span class="gd">DMPO-·OH</span> 特徵訊號</li>
+        <li>暗反應無訊號 → 活性物種由<span class="hl">光激發產生</span></li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 10</span>
+        <img src="papers/me/images/S2214714424017872_p9_1.jpeg" alt="自由基捕獲 EPR">
+      </div>
+      <div class="cap">(a) 自由基捕獲實驗 — BQ/TBA/KI 對照 (b) EPR 圖譜 — ·OH 與 ·O₂⁻ 訊號</div>
+    </div>
+  </div>
+  <div class="sn">17 / 25</div>
+</div>
+
+<!-- ========== S18: RSM ========== -->
+<div class="slide" id="s18" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">07 RSM</span><h2>回應曲面法（RSM）參數最佳化</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>Box-Behnken 設計（BBD）</h3>
+      <p>三因子三水準實驗設計：</p>
+      <table>
+        <tr><th>因子</th><th>符號</th><th>範圍</th></tr>
+        <tr><td>CuO 摻雜比</td><td>X₁</td><td>0.1 – 0.5</td></tr>
+        <tr><td>催化劑用量</td><td>X₂</td><td>0.10 – 0.30 g/L</td></tr>
+        <tr><td>TC 濃度</td><td>X₃</td><td>5 – 15 mg/L</td></tr>
+      </table>
+      <h3>二次多項式回歸方程</h3>
+      <div class="eq">
+        Y = 3.7475 − 13.05X₁ − 0.22458X₂ − 12.9X₃<br>
+        &nbsp;&nbsp;− 0.0915X₁X₂ + 6X₁X₃ + 0.1X₂X₃<br>
+        &nbsp;&nbsp;+ 0.04X₁² + 18.25X₂² + 0.0031X₃²
+      </div>
+      <h3>RSM 最佳化結果</h3>
+      <div class="cards">
+        <div class="card"><div class="lb">最佳 CuO 比</div><div class="vl">0.3</div></div>
+        <div class="card"><div class="lb">最佳用量</div><div class="vl">0.20 g/L</div></div>
+        <div class="card"><div class="lb">最佳 TC</div><div class="vl">8.36 mg/L</div></div>
+        <div class="card"><div class="lb">最高去除率</div><div class="vl green">90.89%</div></div>
+      </div>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 6</span>
+        <img src="papers/me/images/S2214714424017872_p7_0.jpeg" alt="RSM">
+      </div>
+      <div class="cap">(a) CuO 比×用量 (b) CuO 比×TC 濃度 (c) 用量×TC 濃度 — 三維回應曲面圖</div>
+    </div>
+  </div>
+  <div class="sn">18 / 25</div>
+</div>
+
+<!-- ========== S19: 循環穩定性 ========== -->
+<div class="slide" id="s19" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">08 穩定性</span><h2>循環穩定性 — 10 次循環測試</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>ZC₀.₃-PMSS 循環實驗</h3>
+      <ul>
+        <li>每次反應後：超純水清洗 → 真空乾燥 60°C → 再次使用</li>
+        <li><span class="gd">10 次循環後去除率仍維持 > 90%</span></li>
+        <li>催化劑在反應過程中<span class="gd">牢固附著</span>於 PMSS 表面</li>
+      </ul>
+      <h3>金屬離子溶出分析（ICP-OES）</h3>
+      <table>
+        <tr><th>來源</th><th>Zn²⁺ (μg/L)</th><th>Cu²⁺ (μg/L)</th></tr>
+        <tr><td>粉體 ZC₀.₃</td><td>0.71</td><td>0.22</td></tr>
+        <tr><td>ZC₀.₃-PMSS</td><td><span class="gd">0.36</span></td><td><span class="gd">0.12</span></td></tr>
+      </table>
+      <ul>
+        <li>PMSS 固定化<span class="gd">減少約 50%</span> 的金屬離子溶出</li>
+        <li>反應 pH 8.0 低於溶解度極限 → 不會溶解</li>
+      </ul>
+      <h3>結構穩定性驗證</h3>
+      <ul>
+        <li><span class="hl">XRD</span>：10 次循環後結晶相<span class="gd">完全一致</span></li>
+        <li><span class="hl">SEM</span>：微觀形貌<span class="gd">未改變</span></li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 7</span>
+        <img src="papers/me/images/S2214714424017872_p7_1.jpeg" alt="循環穩定性">
+      </div>
+      <div class="cap">ZC₀.₃-PMSS 10 次循環穩定性 — 每次 60 min，去除率維持 > 90%</div>
+    </div>
+  </div>
+  <div class="sn">19 / 25</div>
+</div>
+
+<!-- ========== S20: 長期穩定性 ========== -->
+<div class="slide" id="s20" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">08 穩定性</span><h2>長期穩定性與日光驗證</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>20 天長期穩定性測試</h3>
+      <ul>
+        <li>Day 0：去除率 <span class="gd">91.12%</span></li>
+        <li>Day 1, 3, 5, 10, 20：持續測試</li>
+        <li>Day 20：去除率 <span class="gd">90.02%</span></li>
+        <li>20 天內去除率僅下降 ~1% → <span class="gd">優異的長期穩定性</span></li>
+      </ul>
+      <h3>真實日光驗證</h3>
+      <ul>
+        <li>使用 ZC₀.₃-PMSS 在<span class="hl">自然太陽光</span>下測試（13:00–14:00）</li>
+        <li>結果：TC 去除率 = <span class="gd">89.96%</span></li>
+        <li>與氙燈模擬結果一致 → 證實<span class="gd">太陽光驅動可行</span></li>
+      </ul>
+      <h3>綜合數據</h3>
+      <div class="cards">
+        <div class="card"><div class="lb">Day 0</div><div class="vl green">91.12%</div></div>
+        <div class="card"><div class="lb">Day 20</div><div class="vl green">90.02%</div></div>
+        <div class="card"><div class="lb">日光</div><div class="vl green">89.96%</div></div>
+        <div class="card"><div class="lb">環境</div><div class="vl" style="font-size:15px;">天然海水</div></div>
+      </div>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 8</span>
+        <img src="papers/me/images/S2214714424017872_p8_0.jpeg" alt="長期穩定性">
+      </div>
+      <div class="cap">ZC₀.₃-PMSS 20 天長期穩定性測試 — Day 0~20 去除率均 >90%</div>
+    </div>
+  </div>
+  <div class="sn">20 / 25</div>
+</div>
+
+<!-- ========== S21: 降解途徑 ========== -->
+<div class="slide" id="s21" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">09 途徑</span><h2>TC 降解途徑與毒性評估</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>LC-MS/MS 中間產物鑑定</h3>
+      <ul>
+        <li>使用三重四極桿液相層析串聯質譜儀分析</li>
+        <li>鑑定出 9 個中間產物（P1–P9），建立<span class="hl">完整降解路徑圖</span></li>
+      </ul>
+      <h3>主要降解路徑</h3>
+      <ul>
+        <li><span class="hl">路徑 1</span>：脫氨基、脫甲基反應（P0→P1→P2）</li>
+        <li><span class="hl">路徑 2</span>：開環反應（芳環斷裂，P3→P4→P5）</li>
+        <li><span class="hl">路徑 3</span>：小分子化（P6→P7→P8→P9）</li>
+        <li>最終產物：<span class="gd">CO₂ + H₂O</span>（完全礦化）</li>
+      </ul>
+      <h3>毒性評估</h3>
+      <ul>
+        <li>ECOSAR 軟體（美國 EPA 驗證）分析中間產物毒性</li>
+        <li>大部分中間產物毒性<span class="gd">低於原始 TC</span></li>
+        <li>最終產物 CO₂ + H₂O <span class="gd">無毒</span></li>
+        <li>光催化過程不產生更毒副產物</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 9</span>
+        <img src="papers/me/images/S2214714424017872_p9_0.jpeg" alt="降解途徑">
+      </div>
+      <div class="cap">TC 降解路徑 — P0(444) → P1(405) → ... → P9(58) → CO₂ + H₂O</div>
+    </div>
+  </div>
+  <div class="sn">21 / 25</div>
+</div>
+
+<!-- ========== S22: 光催化機制 ========== -->
+<div class="slide" id="s22" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">10 機制</span><h2>ZnO/CuO 光催化降解機制</h2></div>
+  <div class="sb">
+    <div class="tc">
+      <h3>PN 異質結光催化過程</h3>
+      <ol style="padding-left:18px;">
+        <li style="margin-bottom:6px;">ZnO + CuO 形成 <span class="hl">PN 異質結</span>，調控能帶結構</li>
+        <li style="margin-bottom:6px;">可見光照射 → 電子從 VB 躍遷至 CB → 產生 <span class="hl">h⁺</span></li>
+        <li style="margin-bottom:6px;">CB 上的 e⁻ 與溶解氧反應 → 生成 <span class="bl">·O₂⁻</span></li>
+        <li style="margin-bottom:6px;">·O₂⁻ 與水反應 → 生成 <span class="gd">·OH</span></li>
+        <li style="margin-bottom:6px;">VB 上的 h⁺ 氧化 OH⁻ → 額外生成 <span class="gd">·OH</span></li>
+        <li style="margin-bottom:6px;">h⁺ + ·OH + ·O₂⁻ → TC 礦化為 <span class="gd">CO₂ + H₂O</span></li>
+      </ol>
+      <h3>反應方程式</h3>
+      <div class="eq">
+        (3) ZC + hν → ZC(e⁻) + ZC(h⁺)<br>
+        (4) ZC(e⁻) + O₂ → ·O₂⁻<br>
+        (5) ·O₂⁻ + H₂O → ·OH + OH⁻<br>
+        (6) ZC(h⁺) + OH⁻ → ·OH<br>
+        (7) h⁺ + ·OH + ·O₂⁻ + TC → CO₂ + H₂O
+      </div>
+      <h3>CuO 的關鍵角色</h3>
+      <ul>
+        <li>拓寬光吸收範圍（400→900 nm）</li>
+        <li>加速光生 e⁻/h⁺ 分離（阻抗降 55%）</li>
+        <li>PN 接面內建電場驅動載子定向遷移</li>
+      </ul>
+    </div>
+    <div class="ic">
+      <div class="fig-highlight">
+        <span class="fig-label">Fig. 11</span>
+        <img src="papers/me/images/S2214714424017872_p9_2.jpeg" alt="機制圖">
+      </div>
+      <div class="cap">ZnO/CuO PN 異質結光催化降解 TC 的完整機制 — e⁻/h⁺ 分離與自由基生成</div>
+    </div>
+  </div>
+  <div class="sn">22 / 25</div>
+</div>
+
+<!-- ========== S23: 結論 ========== -->
+<div class="slide" id="s23" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">11 結論</span><h2>研究結論</h2></div>
+  <div class="sb col1">
+    <div class="tc" style="max-width:100%;">
+      <div class="cards" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="card" style="border-color:rgba(245,158,11,0.25);">
+          <div class="lb">材料合成</div>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">共沉澱法成功合成 ZC 複合光觸媒。CuO 摻雜使能隙從 3.12 降至 2.78 eV，顯著改善光電性質。</p>
+        </div>
+        <div class="card" style="border-color:rgba(249,115,22,0.25);">
+          <div class="lb">光催化性能</div>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">ZC₀.₃ 在可見光下 60 min 內達 <span class="gd">90.89%</span> TC 去除率，為純 ZnO 的 <span class="gd">4.99 倍</span>。RSM 最佳化參數確定。</p>
+        </div>
+        <div class="card" style="border-color:rgba(251,191,36,0.25);">
+          <div class="lb">可見光響應</div>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">光吸收拓展至 900 nm。PN 異質結促進 e⁻/h⁺ 分離，增強催化活性。</p>
+        </div>
+        <div class="card" style="border-color:rgba(52,211,153,0.25);">
+          <div class="lb">活性物種</div>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">h⁺ 為主要活性物種，·O₂⁻ 和 ·OH 輔助。TC 礦化為無毒 CO₂ + H₂O。</p>
+        </div>
+        <div class="card" style="border-color:rgba(96,165,250,0.25);">
+          <div class="lb">實際應用</div>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">PMSS 固定化實現 10 次循環 >90%，20 天穩定 90%+，日光下效果與氙燈一致。</p>
+        </div>
+        <div class="card" style="border-color:rgba(167,139,250,0.25);">
+          <div class="lb">科學貢獻</div>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">為海水養殖廢水中 TC 光催化治理提供科學方向和技術支撐，具重要環境應用價值。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sn">23 / 25</div>
+</div>
+
+<!-- ========== S24: 個人心得 ========== -->
+<div class="slide" id="s24" style="background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));">
+  <div class="sh"><span class="tag">12 心得</span><h2>個人心得與反思</h2></div>
+  <div class="sb">
+    <div class="tc" style="flex:1;">
+      <h3>值得學習之處</h3>
+      <ul>
+        <li><span class="gd">PN 異質結策略</span>是解決寬能隙半導體可見光響應的經典而有效的方法</li>
+        <li><span class="gd">RSM 最佳化</span>系統性地找到最佳參數組合，比逐一變量法更高效</li>
+        <li><span class="gd">PMSS 固定化</span>巧妙解決粉體催化劑工程應用瓶頸 — 撈出即回收</li>
+        <li>使用<span class="gd">天然海水</span>而非純水，大幅提升實際參考價值</li>
+        <li>材料鑑定→降解途徑→毒性評估，研究鏈條<span class="gd">非常完整</span></li>
+      </ul>
+      <h3>可以改進的地方</h3>
+      <ul>
+        <li>毒性分析僅依賴<span class="wr">軟體預測</span>，缺乏實際生物毒性實驗</li>
+        <li>未探討<span class="wr">共存污染物</span>對 TC 降解的影響</li>
+        <li>日光驗證僅 1 小時，長期季節性影響需更多數據</li>
+        <li>催化劑<span class="wr">大規模製備</span>可行性和成本分析尚待補充</li>
+      </ul>
+      <h3>對未來研究的啟發</h3>
+      <ul>
+        <li>嘗試<span class="hl">三元複合</span>（如 ZnO/CuO/g-C₃N₄）提升可見光利用</li>
+        <li>在台灣養殖場進行<span class="hl">現場試驗</span>，驗證真實水質效果</li>
+        <li>探索<span class="hl">連續流反應器</span>設計，從批次走向工程應用</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sn">24 / 25</div>
+</div>
+
+<!-- ========== S25: 結語 ========== -->
+<div class="slide cover" id="s25" style="background: radial-gradient(ellipse at 50% 40%, rgba(245,158,11,0.06) 0%, transparent 50%), linear-gradient(180deg, #0b0f19, #111827);">
+  <h1 style="font-size:36px;">謝謝聆聽</h1>
+  <div class="sub" style="font-size:17px; margin-top:20px;">
+    ZnO/CuO 複合光觸媒 — 以太陽光驅動、<br>
+    解決海水養殖廢水中四環素抗生素污染的有效策略
+  </div>
+  <div style="margin-top:44px; display:flex; gap:24px; justify-content:center; position:relative;">
+    <div class="card" style="text-align:center; min-width:130px;">
+      <div class="lb">去除率</div>
+      <div class="vl green">90.89%</div>
+    </div>
+    <div class="card" style="text-align:center; min-width:130px;">
+      <div class="lb">提升倍率</div>
+      <div class="vl">4.99×</div>
+    </div>
+    <div class="card" style="text-align:center; min-width:130px;">
+      <div class="lb">循環穩定</div>
+      <div class="vl green">>90%</div>
+      <div style="font-size:10px; color:var(--text-muted);">10 次循環</div>
+    </div>
+    <div class="card" style="text-align:center; min-width:130px;">
+      <div class="lb">日光驗證</div>
+      <div class="vl green">89.96%</div>
+    </div>
+  </div>
+  <div class="meta" style="margin-top:44px;">
+    J. Water Process Engineering, 68 (2024) 106555<br>
+    DOI: 10.1016/j.jwpe.2024.106555
+  </div>
+  <div class="sn">25 / 25</div>
+</div>
+
+<!-- ===== 導航 ===== -->
+<div class="nav">
+  <button onclick="go(-1)">← 上一頁</button>
+  <span class="pg" id="pgn">1 / 25</span>
+  <button onclick="go(1)">下一頁 →</button>
+</div>
+<div class="key-hint">← → 方向鍵切換 ｜ Home / End 跳頁</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let cur = 0;
+  const pgn = document.getElementById('pgn');
+  const bar = document.getElementById('progressBar');
+
+  function updateUI() {
+    pgn.textContent = (cur + 1) + ' / ' + total;
+    bar.style.width = ((cur + 1) / total * 100) + '%';
+  }
+
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(total - 1, cur + d));
+    slides[cur].classList.add('active');
+    updateUI();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'Backspace') { e.preventDefault(); go(-1); }
+    if (e.key === 'Home') { e.preventDefault(); go(-cur); }
+    if (e.key === 'End') { e.preventDefault(); go(total - 1 - cur); }
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const d = e.changedTouches[0].clientX - tx;
+    if (Math.abs(d) > 50) go(d < 0 ? 1 : -1);
+  });
+
+  updateUI();
+</script>
+</body>
+</html>

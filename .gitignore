@@ -1,0 +1,10 @@
+.env
+.claude/
+__pycache__/
+*.pyc
+debug_*
+captcha_*
+download_*.py
+nchu_download.py
+debug_entry.py
+*.pptx
